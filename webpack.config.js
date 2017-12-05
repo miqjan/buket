@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const modules = require('./webpack.config.modules');
 
@@ -20,6 +21,9 @@ const config = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'developmant'),
+        }),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'index.html'),
         }),
     ],
     devServer: {
