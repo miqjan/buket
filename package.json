@@ -1,0 +1,41 @@
+{
+    "name": "buket-app",
+    "version": "1.0.0",
+    "description": "Shop online flowers cakes",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "webpack-dev-server --hot --inline"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/miqjan/buket.git"
+    },
+    "keywords": [
+        "shop",
+        "online",
+        "cakes",
+        "flowers"
+    ],
+    "author": "Mikayel Abrahamyan",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/miqjan/buket/issues"
+    },
+    "homepage": "https://github.com/miqjan/buket#readme",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "webpack": "^3.10.0",
+        "webpack-dev-server": "^2.9.5"
+    },
+    "dependencies": {
+        "react": "^16.2.0",
+        "react-redux": "^5.0.6",
+        "react-router-dom": "^4.2.2",
+        "redux": "^3.7.2"
+    }
+}
