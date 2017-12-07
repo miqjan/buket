@@ -13,7 +13,7 @@ class Root extends Component {
     }
 
     componentWillMount() {
-
+        
     }
 
     componentDidMount() {
@@ -41,6 +41,7 @@ class Root extends Component {
     }
 
     render() {
+        const is_login = true;
         return (
             <Switch>
                 <PrivateRoute path="/private">
