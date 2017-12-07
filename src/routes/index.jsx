@@ -63,17 +63,19 @@ class Root extends Component {
                                 <Route path="/pages/agreement" render={()=>(<div>AGREEMENT</div>)}/>
                                 <Route path="/pages/payment" render={()=>(<div>PAYMENT</div>)}/>
                                 <Route path="/pages/*" render={()=>(<div>not found</div>)}/>
+                                <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/>
                             </Switch>
                         </RouteGrup>
                         <RouteGrup path="/categories" >
                             <Switch>
-                                <Route path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
+                                <Route exact path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
                                 <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>
                                 <Route path="/categories/cakes" render={()=>(<div>Cakes</div>)}/>
                                 <Route path="/categories/drinks" render={()=>(<div>Drinks</div>)}/>
                                 <Route path="/categories/perfume" render={()=>(<div>Perfume</div>)}/>
                                 <Route path="/categories/phone" render={()=>(<div>phone</div>)}/>
                                 <Route path="/categories/*" render={()=>(<div>not found</div>)}/>
+                                <Redirect exact from="/categories" to={{ pathname: '/categories/flowers',}}/>
                             </Switch>
                         </RouteGrup>
                         <Redirect to={{ pathname: '/categories/flowers',}}/>
