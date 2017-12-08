@@ -9,7 +9,6 @@ import {Route, Redirect} from 'react-router-dom';
 class Root extends Component {
     constructor(props) {
         super(props);
-
     }
 
     componentWillMount() {
@@ -41,11 +40,11 @@ class Root extends Component {
     }
 
     render() {
-        const is_login = true;
+        const isLogin = false;
         return (
             <Switch>
-                <PrivateRoute path="/private">
-                    <RouteGrup>
+                <PrivateRoute isLogin={isLogin} path="/private">
+                    <RouteGrup isLogin={isLogin}>
                         <Switch>
                             <Route path="/private/settings" render={()=>(<div>settings</div>)} />
                             <Route path="/private/delivery_book" render={()=>(<div>delivery_book</div>)} />
@@ -55,7 +54,7 @@ class Root extends Component {
                 </PrivateRoute>{/*redirict to'/' when is not login*/}
                 <PublicRoute path="/">
                     <Switch>
-                        <RouteGrup path="/pages">
+                        <RouteGrup isLogin={isLogin} path="/pages">
                             <Switch>
                                 <Route path="/pages/about_as" render={()=>(<div>ABOUT US</div>)}/>
                                 <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
@@ -66,15 +65,15 @@ class Root extends Component {
                                 <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/>
                             </Switch>
                         </RouteGrup>
-                        <RouteGrup path="/categories" >
+                        <RouteGrup isLogin={isLogin} path="/categories" >
                             <Switch>
                                 <Route exact path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
                                 <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>
                                 <Route path="/categories/cakes" render={()=>(<div>Cakes</div>)}/>
                                 <Route path="/categories/drinks" render={()=>(<div>Drinks</div>)}/>
                                 <Route path="/categories/perfume" render={()=>(<div>Perfume</div>)}/>
-                                <Route path="/categories/phone" render={()=>(<div>phone</div>)}/>
-                                <Route path="/categories/*" render={()=>(<div>not found</div>)}/>
+                                <Route path="/categories/phone" render={()=>(<div>Phone</div>)}/>
+                                <Route path="/categories/*" render={()=>(<div>Not found</div>)}/>
                                 <Redirect exact from="/categories" to={{ pathname: '/categories/flowers',}}/>
                             </Switch>
                         </RouteGrup>

@@ -5,7 +5,8 @@ import { Router } from 'react-router-dom';
 import Root from './routes/index.jsx';
 
 import configureStore, { history } from './store/configureStore';
-//import Root from './routes/index';
+
+import '../public/css/index.css';
 
 const store = configureStore();
 render(

@@ -37,15 +37,16 @@ class Head extends Component {
 
     render() {
         return (
-            <div>
-                <h1>HEADER</h1>
+            <div className="customHead">
+                <h1>HEADER {this.props.isLogin? "Login":""}</h1>
+                
             </div>
         );
     }
 }
 
 Head.propTypes = {
-
+    isLogin: PropTypes.bool.isRequired,
 };
 
 export default Head;

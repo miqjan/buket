@@ -37,7 +37,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="customFooter">
                 <h1>FOOTER</h1>
             </div>
         );

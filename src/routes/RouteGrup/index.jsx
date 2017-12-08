@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Head from '../../components/Layout/Header/index.jsx';
 import Footer from '../../components/Layout/Footer/index.jsx';
+import Sidebar from '../../components/Layout/Sidebar/index.jsx';
 import {Route} from 'react-router-dom';
 
 class RouteGrup extends Component {
@@ -41,10 +42,13 @@ class RouteGrup extends Component {
     render() {
         return (
             <div>
-            <Head/>
-                <Route path={this.props.path}>
+            <Head isLogin={this.props.isLogin}/>
+                <div className="customBody">
+                    <Sidebar/>
+                    <Route path={this.props.path}>
                         {this.props.children}
-                </Route>
+                    </Route>
+                </div>
             <Footer/>
             </div>
         );
@@ -52,7 +56,7 @@ class RouteGrup extends Component {
 }
 
 RouteGrup.propTypes = {
-
+    isLogin: PropTypes.bool.isRequired,
 };
 
 export default RouteGrup;
