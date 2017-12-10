@@ -41,10 +41,32 @@ class Root extends Component {
 
     render() {
         const isLogin = false;
+        const menuItem = [
+            {
+                name:"Համաձայնագիր",
+                path:"/pages/agreement",
+            },
+            {
+                name:"Վճարում",
+                path:"/pages/payment",
+            },
+            {
+                name:"Առաքում",
+                path:"/pages/delivery",
+            },
+            {
+                name:"Մեր Մասին",
+                path:"/pages/about_as",
+            },
+            {
+                name:"Հարցեր",
+                path:"/pages/questions",
+            },
+        ];
         return (
             <Switch>
                 <PrivateRoute isLogin={isLogin} path="/private">
-                    <RouteGrup isLogin={isLogin}>
+                    <RouteGrup isLogin={isLogin} menuItem={menuItem}>
                         <Switch>
                             <Route path="/private/settings" render={()=>(<div>settings</div>)} />
                             <Route path="/private/delivery_book" render={()=>(<div>delivery_book</div>)} />
@@ -54,7 +76,7 @@ class Root extends Component {
                 </PrivateRoute>{/*redirict to'/' when is not login*/}
                 <PublicRoute path="/">
                     <Switch>
-                        <RouteGrup isLogin={isLogin} path="/pages">
+                        <RouteGrup isLogin={isLogin} menuItem={menuItem} path="/pages">
                             <Switch>
                                 <Route path="/pages/about_as" render={()=>(<div>ABOUT US</div>)}/>
                                 <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
@@ -65,7 +87,7 @@ class Root extends Component {
                                 <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/>
                             </Switch>
                         </RouteGrup>
-                        <RouteGrup isLogin={isLogin} path="/categories" >
+                        <RouteGrup isLogin={isLogin} menuItem={menuItem} path="/categories" >
                             <Switch>
                                 <Route exact path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
                                 <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>

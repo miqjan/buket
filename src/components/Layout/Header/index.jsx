@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import HeadTop from './HeaderUI/top.jsx';
+import HeadContent from './HeaderUI/content.jsx';
+
 
 class Head extends Component {
     constructor(props) {
@@ -37,16 +40,20 @@ class Head extends Component {
 
     render() {
         return (
-            <div className="customHead">
-                <h1>HEADER {this.props.isLogin? "Login":""}</h1>
-                
-            </div>
+            <header>
+                <div className="container">
+                    <HeadTop />
+                </div>
+                <HeadContent isLogin={this.props.isLogin} /*userInfo={this.props.userInfo}*/ menuItem={this.props.menuItem} />
+            </header>
         );
     }
 }
 
 Head.propTypes = {
     isLogin: PropTypes.bool.isRequired,
+    userInfo: PropTypes.object,
+    menuItem: PropTypes.array.isRequired,
 };
 
 export default Head;

@@ -6,7 +6,7 @@ import Root from './routes/index.jsx';
 
 import configureStore, { history } from './store/configureStore';
 
-import '../public/css/index.css';
+import '../public/css/index.scss';
 
 const store = configureStore();
 render(

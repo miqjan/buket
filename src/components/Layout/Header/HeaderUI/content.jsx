@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Head from '../../components/Layout/Header/index.jsx';
-import Footer from '../../components/Layout/Footer/index.jsx';
-import Sidebar from '../../components/Layout/Sidebar/index.jsx';
-import {Route} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-class RouteGrup extends Component {
+class HeadContent extends Component {
     constructor(props) {
         super(props);
-
     }
 
     componentWillMount() {
@@ -41,24 +37,28 @@ class RouteGrup extends Component {
 
     render() {
         return (
-            <div>
-            <Head isLogin={this.props.isLogin} menuItem={this.props.menuItem} />
-            <div className="customBody">
-                <Sidebar/>
-                <Route path={this.props.path}>
-                    {this.props.children}
-                </Route>
-            </div>
-            <Footer/>
+            <div className="header-content">
+                <div className="header-menu">
+                    <ul>
+                        {this.props.menuItem.map((item,index)=>{
+                            return (
+                                <li key={index}>
+                                    <Link to={item.path} >{item.name}</Link>
+                                </li>
+                            );
+                        },this)}
+                       
+                    </ul>
+                </div>
             </div>
         );
     }
 }
 
-RouteGrup.propTypes = {
+HeadContent.propTypes = {
     isLogin: PropTypes.bool.isRequired,
     userInfo: PropTypes.object,
     menuItem: PropTypes.array.isRequired,
 };
 
-export default RouteGrup;
+export default HeadContent;
