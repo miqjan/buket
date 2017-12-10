@@ -1,0 +1,253 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    border: 0;
+    font-family: "ArialArmST", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+div, span, object, iframe, img, table, caption, thead, tbody,
+tfoot, tr, tr, td, article, aside, canvas, details, figure, hgroup, menu,
+nav, footer, header, section, summary, mark, audio, video {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cit, code,
+del, dfn, em, ins, q, samp, small, strong, sub, sup, b, i, hr, dl, dt, dd,
+ol, ul, li, fieldset, legend, label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: separate;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table caption, table th, table td {
+    text-align: left;
+    vertical-align: middle;
+}
+
+a img {
+    border: 0;
+}
+
+:focus {
+    outline: 0;
+}
+
+body {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    outline: 0 !important;
+}
+
+p {
+    cursor: default;
+}
+
+@font-face {
+    font-family: 'ArialArmST';
+    src: url('../fonts/ArialArmST-Bold.eot');
+    src: url('../fonts/ArialArmST-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ArialArmST-Bold.woff2') format('woff2'),
+    url('../fonts/ArialArmST-Bold.woff') format('woff'),
+    url('../fonts/ArialArmST-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ArialArmST';
+    src: url('../fonts/ArialArmST-Regular.eot');
+    src: url('../fonts/ArialArmST-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ArialArmST-Regular.woff2') format('woff2'),
+    url('../fonts/ArialArmST-Regular.woff') format('woff'),
+    url('../fonts/ArialArmST-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ArialArmST';
+    src: url('../fonts/ArialArmST-Italic.eot');
+    src: url('../fonts/ArialArmST-Italic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ArialArmST-Italic.woff2') format('woff2'),
+    url('../fonts/ArialArmST-Italic.woff') format('woff'),
+    url('../fonts/ArialArmST-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'ArialArmST';
+    src: url('../fonts/ArialArmST-BoldItalic.eot');
+    src: url('../fonts/ArialArmST-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ArialArmST-BoldItalic.woff2') format('woff2'),
+    url('../fonts/ArialArmST-BoldItalic.woff') format('woff'),
+    url('../fonts/ArialArmST-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+.container {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    overflow: hidden;
+    padding-bottom: 10px;
+    ul {
+        li {
+            list-style: none;
+        }
+    }
+    .header-top {
+        display: flex;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        position: relative;
+        &:before{
+            content: "";
+            position: absolute;
+            background-image: url("../img/header-green.png");
+            width: 790px;
+            height: 59px;
+            right: 150px;
+            bottom: 0;
+            z-index: -1;
+        }
+        &:after{
+            content: "";
+            transform: rotateY(180deg);
+            position: absolute;
+            background-image: url("../img/header-green.png");
+            width: 790px;
+            height: 59px;
+            left: 100%;
+            bottom: 0;
+            margin-left: -120px;
+            z-index: -1;
+        }
+        .top-info {
+            padding-right: 30px;
+            ul{
+                text-align: center;
+                li{
+                    font-size: 20px;
+                    color: #535353;
+                    a{
+                        color: #535353;
+                        text-decoration: none;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        .top-language{
+            ul{
+                display: flex;
+                li{
+                    cursor: pointer;
+                    width: 30px;
+                    color: #303030;
+                    transition: all 0.5s;
+                    &:hover{
+                        color: #ed217c;
+                        letter-spacing: 0.1em;
+                    }
+                }
+            }
+        }
+        .header-logo{
+            position: absolute;
+            right: 0;
+            top: -8px;
+            background-color: #ffffff;
+            width: 220px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            transform: skewX(-25deg);
+            border-left: 1px solid rgba(0, 0, 0, 0.15);
+            border-right: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: -1px -1px 13px 5px rgba(83, 82, 82, 0.5);
+            img{
+                transform: skewX(25deg);
+            }
+        }
+    }
+    .header-content{
+        background: rgba(227,50,116,1);
+        background: -moz-linear-gradient(top, rgba(227,50,116,1) 0%, rgba(227,50,116,1) 1%, rgba(235,53,124,1) 29%, rgba(220,46,113,1) 69%, rgba(229,57,122,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(227,50,116,1)), color-stop(1%, rgba(227,50,116,1)), color-stop(29%, rgba(235,53,124,1)), color-stop(69%, rgba(220,46,113,1)), color-stop(100%, rgba(229,57,122,1)));
+        background: -webkit-linear-gradient(top, rgba(227,50,116,1) 0%, rgba(227,50,116,1) 1%, rgba(235,53,124,1) 29%, rgba(220,46,113,1) 69%, rgba(229,57,122,1) 100%);
+        background: -o-linear-gradient(top, rgba(227,50,116,1) 0%, rgba(227,50,116,1) 1%, rgba(235,53,124,1) 29%, rgba(220,46,113,1) 69%, rgba(229,57,122,1) 100%);
+        background: -ms-linear-gradient(top, rgba(227,50,116,1) 0%, rgba(227,50,116,1) 1%, rgba(235,53,124,1) 29%, rgba(220,46,113,1) 69%, rgba(229,57,122,1) 100%);
+        background: linear-gradient(to bottom, rgba(227,50,116,1) 0%, rgba(227,50,116,1) 1%, rgba(235,53,124,1) 29%, rgba(220,46,113,1) 69%, rgba(229,57,122,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e33274', endColorstr='#e5397a', GradientType=0 );
+        -webkit-box-shadow: 0 10px 6px -6px #777;
+        -moz-box-shadow: 0 10px 6px -6px #777;
+        box-shadow: 0 10px 6px -6px #777;
+        padding: 15px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .header-menu{
+            ul{
+                li{
+                    display: inline-block;
+                    padding-right: 20px;
+                    a{
+                        font-size: 18px;
+                        color: #ffffff;
+                        text-decoration: none;
+                        display: inline-block;
+                        position: relative;
+                        transition: all 0.5s;
+                        &:after{
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            top: 100%;
+                            margin: 0 auto;
+                            width: 0;
+                            height: 1px;
+                            background-color: #ffffff;
+                            transition: all 0.6s;
+                        }
+                        &:hover{
+                            &:after{
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
