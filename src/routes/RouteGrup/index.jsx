@@ -42,7 +42,7 @@ class RouteGrup extends Component {
     render() {
         return (
             <div>
-            <Head isLogin={this.props.isLogin} menuItem={this.props.menuItem} />
+            <Head isLogin={this.props.isLogin} menuItem={this.props.menuItem} userInfo={this.props.userInfo}/>
             <div className="customBody">
                 <Sidebar/>
                 <Route path={this.props.path}>

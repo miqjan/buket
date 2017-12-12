@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import Login from './login.jsx';
+import UserInfo from './userinfo.jsx';
+
 class HeadContent extends Component {
     constructor(props) {
         super(props);
@@ -50,6 +53,8 @@ class HeadContent extends Component {
                        
                     </ul>
                 </div>
+                {this.props.isLogin? <UserInfo userInfo={this.props.userInfo}/> : <Login clickFunction={''}/>}
+                
             </div>
         );
     }

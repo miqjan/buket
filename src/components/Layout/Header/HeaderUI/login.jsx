@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import HeadTop from './HeaderUI/top.jsx';
-import HeadContent from './HeaderUI/content.jsx';
+import { Link } from 'react-router-dom';
 
-
-class Head extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
-
     }
 
     componentWillMount() {
@@ -40,20 +37,21 @@ class Head extends Component {
 
     render() {
         return (
-            <header>
-                <div className="container">
-                    <HeadTop />
+           
+                <div className="login">
+                    <ul>
+                        <li><input type="text"/></li>
+                        <li><input type="password"/></li>
+                        <li><button>LogIn</button></li>
+                    </ul>
                 </div>
-                <HeadContent isLogin={this.props.isLogin} userInfo={this.props.userInfo} menuItem={this.props.menuItem} />
-            </header>
+            
         );
     }
 }
 
-Head.propTypes = {
-    isLogin: PropTypes.bool.isRequired,
-    userInfo: PropTypes.object,
-    menuItem: PropTypes.array.isRequired,
+Login.propTypes = {
+   
 };
 
-export default Head;
+export default Login;
