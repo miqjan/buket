@@ -41,10 +41,12 @@ class Head extends Component {
     render() {
         return (
             <header>
-                <div className="container">
-                    <HeadTop />
+                <div className="pre-header">
+                    <div className="container">
+                        <HeadTop />
+                    </div>
                 </div>
-                <HeadContent isLogin={this.props.isLogin} userInfo={this.props.userInfo} menuItem={this.props.menuItem} />
+                <HeadContent isLogin={this.props.isLogin} userInfo={this.props.userInfo} menuItem={this.props.menuItem} subMenuItem={this.props.subMenuItem} />
             </header>
         );
     }
@@ -54,6 +56,7 @@ Head.propTypes = {
     isLogin: PropTypes.bool.isRequired,
     userInfo: PropTypes.object,
     menuItem: PropTypes.array.isRequired,
+    subMenuItem: PropTypes.array.isRequired,
 };
 
 export default Head;

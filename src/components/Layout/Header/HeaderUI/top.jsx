@@ -50,9 +50,6 @@ class HeadTop extends Component {
                         <li>AM</li>
                     </ul>
                 </div>
-                <div className="header-logo">
-                    <img src="../../../../../public/img/header-logo.png" alt=""/>
-                </div>
             </div>
         );
     }

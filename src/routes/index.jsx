@@ -40,11 +40,11 @@ class Root extends Component {
     }
 
     render() {
-        const isLogin = false;
+        const isLogin = true;
         const userInfo = {
             firstname: "Test",
             lastname: "Tester",
-        }
+        };
         const menuItem = [
             {
                 name:"Համաձայնագիր",
@@ -67,10 +67,126 @@ class Root extends Component {
                 path:"/pages/questions",
             },
         ];
+        
+        const subMenuItem = [
+            {
+                name: "Ծաղիկներ",
+                imgUrl: "category1.jpg",
+                category: [
+                    {
+                        name: "Ծաղկեփնջեր",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Զամբյուղներ",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Կոմպոզիցիա",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Հոլանդական",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Վարդ",
+                        path: "/categories/flowers",
+                    },
+                ],
+            },
+            {
+                name: "Սգո",
+                imgUrl: "category1.jpg",
+                category: [
+                    {
+                        name: "Պսակ",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Զամբյուղներ",
+                        path: "/categories/flowers",
+                    },
+                ],
+            },
+            {
+                name: "Տորթեր",
+                imgUrl: "category2.jpg",
+                category: [
+                    {
+                        name: "Սիրային",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Նոր Տարի",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Ծննդյան",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Մկրտության",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Մանկական",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Դասական",
+                        path: "/categories/flowers",
+                    },
+                ],
+            },
+            {
+                name: "Խմիչքներ",
+                imgUrl: "category3.jpg",
+                category: [
+                    {
+                        name: "Ծաղկեփնջեր",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Ծաղկեփնջեր",
+                        path: "/categories/flowers",
+                    },
+                ],
+            },
+            {
+                name: "Ծաղիկներ",
+                imgUrl: "category1.jpg",
+                category: [
+                    {
+                        name: "Ծաղկեփնջեր",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Ծաղկեփնջեր",
+                        path: "/categories/flowers",
+                    },
+                ],
+            },
+            {
+                name: "Ծաղիկներ",
+                imgUrl: "category1.jpg",
+                category: [
+                    {
+                        name: "Ծաղկեփնջեր",
+                        path: "/categories/flowers",
+                    },
+                    {
+                        name: "Ծաղկեփնջեր",
+                        path: "/categories/flowers",
+                    },
+                ],
+            },
+        ];
+            
         return (
             <Switch>
                 <PrivateRoute isLogin={isLogin} path="/private">
-                    <RouteGrup isLogin={isLogin} menuItem={menuItem} userInfo={userInfo}>
+                    <RouteGrup isLogin={isLogin} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo}>
                         <Switch>
                             <Route path="/private/settings" render={()=>(<div>settings</div>)} />
                             <Route path="/private/delivery_book" render={()=>(<div>delivery_book</div>)} />
@@ -80,7 +196,7 @@ class Root extends Component {
                 </PrivateRoute>{/*redirict to'/' when is not login*/}
                 <PublicRoute path="/">
                     <Switch>
-                        <RouteGrup isLogin={isLogin} menuItem={menuItem} userInfo={userInfo} path="/pages">
+                        <RouteGrup isLogin={isLogin} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo} path="/pages">
                             <Switch>
                                 <Route path="/pages/about_as" render={()=>(<div>ABOUT US</div>)}/>
                                 <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
@@ -91,7 +207,7 @@ class Root extends Component {
                                 <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/>
                             </Switch>
                         </RouteGrup>
-                        <RouteGrup isLogin={isLogin} menuItem={menuItem} userInfo={userInfo} path="/categories" >
+                        <RouteGrup isLogin={isLogin} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo} path="/categories" >
                             <Switch>
                                 <Route exact path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
                                 <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>

@@ -6,7 +6,7 @@ var port = process.env.PORT || 3000;
 if(process.env.NODE_ENV === "production"){
     app.use(sslRedirect());
 }
-app.use(express.static(path.join(__dirname,'public')));
+app.use("public",express.static(path.join(__dirname,'public')));
 app.get("*", function(req, res) {
   res.sendFile(__dirname + "static" + '/index.html');
 })
