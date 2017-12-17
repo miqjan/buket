@@ -60,7 +60,7 @@ class HeadContent extends Component {
 
                         </ul>
                     </div>
-                    {this.props.isLogin? <UserInfo userInfo={this.props.userInfo}/> : <Login clickFunction={''}/>}
+                    {this.props.isSignIn? <UserInfo userInfo={this.props.userInfo}/> : <Login SignIn = {this.props.SignIn}/>}
                 </div>
                 <div className="container">
                     <div className="header-logo">
@@ -73,10 +73,11 @@ class HeadContent extends Component {
 }
 
 HeadContent.propTypes = {
-    isLogin: PropTypes.bool.isRequired,
+    isSignIn: PropTypes.bool.isRequired,
     userInfo: PropTypes.object,
     menuItem: PropTypes.array.isRequired,
     subMenuItem: PropTypes.array.isRequired,
+    SignIn: PropTypes.func,
 };
 
 export default HeadContent;

@@ -35,7 +35,7 @@ class PrivateRoute extends Component {
     }
 
     render() {
-        if(this.props.isLogin)
+        if(this.props.isSignIn)
         {
             return (
                 <Route path={this.props.path}>
@@ -49,7 +49,7 @@ class PrivateRoute extends Component {
 }
 
 PrivateRoute.propTypes = {
-    isLogin: PropTypes.bool.isRequired,
+    isSignIn: PropTypes.bool.isRequired,
 };
 
 export default PrivateRoute;

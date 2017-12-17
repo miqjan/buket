@@ -41,7 +41,13 @@ class RouteGrup extends Component {
     render() {
         return (
             <div>
-            <Head isLogin={this.props.isLogin} menuItem={this.props.menuItem} subMenuItem={this.props.subMenuItem} userInfo={this.props.userInfo}/>
+            <Head 
+                isSignIn={this.props.isSignIn} 
+                menuItem={this.props.menuItem} 
+                subMenuItem={this.props.subMenuItem} 
+                userInfo={this.props.userInfo}
+                SignIn = {this.props.SignIn} 
+            />
             <div className="customBody">
                 
                 <Route path={this.props.path}>
@@ -55,10 +61,11 @@ class RouteGrup extends Component {
 }
 
 RouteGrup.propTypes = {
-    isLogin: PropTypes.bool.isRequired,
+    isSignIn: PropTypes.bool.isRequired,
     userInfo: PropTypes.object,
     menuItem: PropTypes.array.isRequired,
     subMenuItem: PropTypes.array.isRequired,
+    SignIn: PropTypes.func,
 };
 
 export default RouteGrup;

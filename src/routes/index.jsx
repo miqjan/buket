@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Switch} from 'react-router-dom'
+import {Switch} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import PublicRoute from './PublicRoute/index.jsx';
 import PrivateRoute from './PrivateRoute/index.jsx';
 import RouteGrup from './RouteGrup/index.jsx';
-import {Route, Redirect} from 'react-router-dom';
+
+import {IsSignIn, SignIn} from '../actions/Auth';
+
 
 class Root extends Component {
     constructor(props) {
@@ -12,7 +17,7 @@ class Root extends Component {
     }
 
     componentWillMount() {
-        
+        this.props.IsSignIn();
     }
 
     componentDidMount() {
@@ -40,7 +45,6 @@ class Root extends Component {
     }
 
     render() {
-        const isLogin = true;
         const userInfo = {
             firstname: "Test",
             lastname: "Tester",
@@ -185,8 +189,8 @@ class Root extends Component {
             
         return (
             <Switch>
-                <PrivateRoute isLogin={isLogin} path="/private">
-                    <RouteGrup isLogin={isLogin} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo}>
+                <PrivateRoute isSignIn={this.props.isSignIn} path="/private">
+                    <RouteGrup isSignIn={this.props.isSignIn} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo}>
                         <Switch>
                             <Route path="/private/settings" render={()=>(<div>settings</div>)} />
                             <Route path="/private/delivery_book" render={()=>(<div>delivery_book</div>)} />
@@ -196,7 +200,15 @@ class Root extends Component {
                 </PrivateRoute>{/*redirict to'/' when is not login*/}
                 <PublicRoute path="/">
                     <Switch>
-                        <RouteGrup isLogin={isLogin} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo} path="/pages">
+                        <RouteGrup 
+                            
+                            isSignIn = {this.props.isSignIn} 
+                            menuItem = {menuItem}  
+                            subMenuItem = {subMenuItem} 
+                            userInfo = {userInfo} 
+                            SignIn = {this.props.SignIn}
+                            path="/pages"
+                        >
                             <Switch>
                                 <Route path="/pages/about_as" render={()=>(<div>ABOUT US</div>)}/>
                                 <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
@@ -207,7 +219,15 @@ class Root extends Component {
                                 <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/>
                             </Switch>
                         </RouteGrup>
-                        <RouteGrup isLogin={isLogin} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo} path="/categories" >
+                        <RouteGrup 
+                            
+                            isSignIn={this.props.isSignIn}
+                            menuItem={menuItem} 
+                            subMenuItem={subMenuItem} 
+                            userInfo={userInfo} 
+                            SignIn = {this.props.SignIn}
+                            path="/categories" 
+                        >
                             <Switch>
                                 <Route exact path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
                                 <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>
@@ -232,7 +252,24 @@ class Root extends Component {
 }
 
 Root.propTypes = {
-
+    isSignIn: PropTypes.bool.isRequired,
+    data: PropTypes.object,
+    error: PropTypes.object,
+    loading: PropTypes.bool.isRequired,
+};
+const mapStateToProps = (state) => {
+    return {
+        isSignIn: state.user.isSignIn,
+        error: state.user.error,
+        data: state.user.data,
+        loading: state.user.loading,
+    };
 };
 
-export default Root;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        IsSignIn: () =>  dispatch ( IsSignIn() ),
+        SignIn: (email, password) => dispatch ( SignIn( email, password ) ),
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Root);

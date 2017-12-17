@@ -108,7 +108,6 @@ p {
     font-weight: bold;
     font-style: italic;
 }
-
 .container {
     width: 1200px;
     margin: 0 auto;
@@ -171,6 +170,7 @@ header {
                     }
                 }
             }
+            z-index: 5;
         }
     }
     .header-content{
@@ -192,14 +192,15 @@ header {
         .header-logo{
             position: absolute;
             right: 10px;
-            bottom: -27px;
+            bottom: -10px;
             background-color: #ffffff;
             width: 220px;
-            height: 134px;
+            height: 100px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
             transform: skewX(-25deg);
+            box-shadow: 9px 0 5px -5px rgba(51, 51, 51, 0.6), -9px 0px 5px -5px rgba(51, 51, 51, 0.6);
             //border-left: 1px solid rgba(0, 0, 0, 0.15);
             //border-right: 1px solid rgba(0, 0, 0, 0.15);
             //box-shadow: 0px 20px 25px 2px rgba(83, 82, 82, 0.42);
@@ -226,7 +227,7 @@ header {
                         display: inline-block;
                         position: relative;
                         transition: all 0.5s;
-                        text-shadow: -3px 0px 3px rgba(3, 3, 3, 0.8);
+                        text-shadow: -1px -1px 5px rgba(3, 3, 3, 0.8);
                         &:after{
                             content: "";
                             position: absolute;
@@ -276,9 +277,25 @@ header {
                                            font-weight: bold;
                                        }
                                     }
+                                    $break-extraSmall: 320px;
+                                    $break-small: 940px;
+                                    $break-medium: 940px;
+                                    $break-large: 1400px;
+                                    $break-extraLarge: 1700px;
                                     .subItemImg{
                                         box-shadow: 0 0 25px -6px rgb(119, 119, 119);
                                         border-radius: 5px;
+                                        @media screen and (max-width: $break-medium) {
+                                            display: none;
+                                        }
+                                        @media screen and (min-width: $break-medium+1) and (max-width: $break-large){
+                                            height: 125px;
+                                            width: 125px;
+                                        }
+                                        @media screen and (min-width: $break-large+1) and (max-width: $break-extraLarge){
+                                            height: 200px;
+                                            width: 200px;
+                                        }
                                         height: 274px;
                                         width: 274px;
                                         img{
@@ -373,3 +390,4 @@ header {
         }
     }
 }
+

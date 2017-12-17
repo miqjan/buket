@@ -46,17 +46,24 @@ class Head extends Component {
                         <HeadTop />
                     </div>
                 </div>
-                <HeadContent isLogin={this.props.isLogin} userInfo={this.props.userInfo} menuItem={this.props.menuItem} subMenuItem={this.props.subMenuItem} />
+                <HeadContent 
+                    isSignIn={this.props.isSignIn} 
+                    userInfo={this.props.userInfo} 
+                    menuItem={this.props.menuItem} 
+                    subMenuItem={this.props.subMenuItem}
+                    SignIn = {this.props.SignIn} 
+                />
             </header>
         );
     }
 }
 
 Head.propTypes = {
-    isLogin: PropTypes.bool.isRequired,
+    isSignIn: PropTypes.bool.isRequired,
     userInfo: PropTypes.object,
     menuItem: PropTypes.array.isRequired,
     subMenuItem: PropTypes.array.isRequired,
+    SignIn: PropTypes.func,
 };
 
 export default Head;

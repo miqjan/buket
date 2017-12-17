@@ -1,0 +1,5 @@
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
+export const SIGN_IN_ERORR = "SIGN_IN_ERORR";
+export const SIGN_IN_LOADING = "SIGN_IN_LOADING";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const SIGN_UP_ERORR = "SIGN_UP_ERORR";
