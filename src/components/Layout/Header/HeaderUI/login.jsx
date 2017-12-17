@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Alert from 'react-s-alert';
-
+import {Icon} from 'react-fa';
 
 
 class Login extends Component {
@@ -12,6 +12,7 @@ class Login extends Component {
             email: "",
             password: "", 
             error: null,
+            active: false,
         }
     }
 
@@ -55,15 +56,43 @@ class Login extends Component {
             this.setState({'error':'Email or password cannot be blank.'});
         }
     }
+    
+    OpenDropSignIn () {
+        this.setState({active:!this.state.active});
+    }
 
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.ClickSignIn();
+        }
+    }
     render() {
         return (
                 
                 <div className="login">
                     <ul>
-                        <li><input onChange={this.handleChange.bind(this)} name="email"  type="text"/></li>
-                        <li><input onChange={this.handleChange.bind(this)} name="password"  type="password"/></li>
-                        <li><button onClick={this.ClickSignIn.bind(this)}>LogIn</button></li>
+                        <li><Link to={'#'}>Sign up</Link></li>
+                        <li className="drop-btn">
+                            <a href="javascript:" className={this.state.active? "active": ""} onClick={this.OpenDropSignIn.bind(this)} >Sign in</a>
+                            <div className={`drop-sign-in ${this.state.active? "active": ""}`}>
+                                <ul>
+                                    <form >
+                                        <li>
+                                            <input onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} name="email"  type="text" placeholder="E-mail"/>
+                                        </li>
+                                        <li>
+                                            <input onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} name="password"  type="password" placeholder="Password"/>
+                                        </li>
+                                        <li className="sign-in">
+                                            <button type="button"  onClick={this.ClickSignIn.bind(this)}><Icon name="sign-in" />Sign in</button>
+                                        </li>
+                                        <li className="fb-sign-in">
+                                            <button type="button">Facebook</button>
+                                        </li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             

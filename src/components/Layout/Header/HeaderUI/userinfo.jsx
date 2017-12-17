@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import {Icon} from 'react-fa';
+
 
 class UserInfo extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            active: false,
+        }
     }
 
     componentWillMount() {
@@ -35,13 +40,34 @@ class UserInfo extends Component {
 
     }
 
+    OpenDropSignIn () {
+        this.setState({active:!this.state.active});
+    }
+
     render() {
         return (
            
             <div className="userinfo">
                 <ul>
-                    <li>{this.props.userInfo.firstname}</li>
-                    <li><img src='../../../../../public/img/avatar.png'/></li>
+                    <li>
+                        <Link to={'#'}><Icon name="shopping-cart" /><span className="product-count">0</span></Link>
+                    </li>
+                    <li className="drop-btn">
+                        <a href="javascript:" onClick={this.OpenDropSignIn.bind(this)}>
+                            {this.props.userInfo.firstname}<Icon name="user" /><Icon className={`angle ${this.state.active? "active": ""}`} name="angle-down" />
+                            {/*<Icon spin name="spinner" />*/}
+                        </a>
+                        <div className={`drop-sign-in ${this.state.active? "active": ""}`}>
+                            <ul>
+                                <li className="settings">
+                                    <button type="button"><Icon name="cogs" />Settings</button>
+                                </li>
+                                <li className="sign-out">
+                                    <button type="button"><Icon name="sign-out" />Sign out</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </div>
             

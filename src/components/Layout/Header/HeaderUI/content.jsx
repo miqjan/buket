@@ -54,7 +54,7 @@ class HeadContent extends Component {
                                 );
                             },this)}
                             <li className="dropDown">
-                                <a href="#">Տեսականի <span><Icon name="angle-down" /></span></a>
+                                <a href="javascript:">Տեսականի <span><Icon name="angle-down" /></span></a>
                                 <SubMenu subMenuItem={this.props.subMenuItem}/>
                             </li>
 

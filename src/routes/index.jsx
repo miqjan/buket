@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Switch} from 'react-router-dom';
+import {Switch, withRouter} from 'react-router-dom';
 import {Route, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -272,4 +272,4 @@ const mapDispatchToProps = (dispatch) => {
         SignIn: (email, password) => dispatch ( SignIn( email, password ) ),
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Root);
+export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Root) );

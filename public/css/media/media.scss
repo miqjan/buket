@@ -1,0 +1,30 @@
+@media #{$xs} {
+    
+}
+
+@media #{$sm} {
+
+}
+
+@media #{$xs_sm} {
+
+}
+
+@media #{$md} {
+
+}
+
+@media #{$lg} {
+
+}
+
+@media #{$xl} {
+
+}
+
+@media #{$xxl} {
+    header .header-content .header-menu > ul > li.dropDown .subMenu > ul li .subItemImg{
+        width: 200px;
+        height: 200px;
+    }
+}
