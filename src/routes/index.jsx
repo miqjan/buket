@@ -8,7 +8,7 @@ import PublicRoute from './PublicRoute/index.jsx';
 import PrivateRoute from './PrivateRoute/index.jsx';
 import RouteGrup from './RouteGrup/index.jsx';
 
-import {IsSignIn, SignIn} from '../actions/Auth';
+import {IsSignIn} from '../actions/Auth';
 
 
 class Root extends Component {
@@ -44,171 +44,21 @@ class Root extends Component {
 
     }
 
-    render() {
-        const userInfo = {
-            firstname: "Test",
-            lastname: "Tester",
-        };
-        const menuItem = [
-            {
-                name:"Համաձայնագիր",
-                path:"/pages/agreement",
-            },
-            {
-                name:"Վճարում",
-                path:"/pages/payment",
-            },
-            {
-                name:"Առաքում",
-                path:"/pages/delivery",
-            },
-            {
-                name:"Մեր Մասին",
-                path:"/pages/about_as",
-            },
-            {
-                name:"Հարցեր",
-                path:"/pages/questions",
-            },
-        ];
-        
-        const subMenuItem = [
-            {
-                name: "Ծաղիկներ",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Զամբյուղներ",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Կոմպոզիցիա",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Հոլանդական",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Վարդ",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Սգո",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Պսակ",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Զամբյուղներ",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Տորթեր",
-                imgUrl: "category2.jpg",
-                category: [
-                    {
-                        name: "Սիրային",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Նոր Տարի",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծննդյան",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Մկրտության",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Մանկական",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Դասական",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Խմիչքներ",
-                imgUrl: "category3.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Ծաղիկներ",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Ծաղիկներ",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-        ];
-            
+    render() { 
         return (
             <Switch>
                 <PrivateRoute isSignIn={this.props.isSignIn} path="/private">
-                    <RouteGrup isSignIn={this.props.isSignIn} menuItem={menuItem} subMenuItem={subMenuItem} userInfo={userInfo}>
+                    <RouteGrup>
                         <Switch>
                             <Route path="/private/settings" render={()=>(<div>settings</div>)} />
                             <Route path="/private/delivery_book" render={()=>(<div>delivery_book</div>)} />
                             <Route path="/private/*" render={()=>(<div>not found</div>)}/>
                         </Switch>
                     </RouteGrup>
-                </PrivateRoute>{/*redirict to'/' when is not login*/}
+                </PrivateRoute>
                 <PublicRoute path="/">
                     <Switch>
-                        <RouteGrup 
-                            
-                            isSignIn = {this.props.isSignIn} 
-                            menuItem = {menuItem}  
-                            subMenuItem = {subMenuItem} 
-                            userInfo = {userInfo} 
-                            SignIn = {this.props.SignIn}
-                            path="/pages"
-                        >
+                        <RouteGrup path="/pages">
                             <Switch>
                                 <Route path="/pages/about_as" render={()=>(<div>ABOUT US</div>)}/>
                                 <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
@@ -219,15 +69,7 @@ class Root extends Component {
                                 <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/>
                             </Switch>
                         </RouteGrup>
-                        <RouteGrup 
-                            
-                            isSignIn={this.props.isSignIn}
-                            menuItem={menuItem} 
-                            subMenuItem={subMenuItem} 
-                            userInfo={userInfo} 
-                            SignIn = {this.props.SignIn}
-                            path="/categories" 
-                        >
+                        <RouteGrup path="/categories">
                             <Switch>
                                 <Route exact path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
                                 <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>
@@ -268,8 +110,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        IsSignIn: () =>  dispatch ( IsSignIn() ),
-        SignIn: (email, password) => dispatch ( SignIn( email, password ) ),
+        IsSignIn: () =>  dispatch ( IsSignIn() )
     };
 };
 export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Root) );
