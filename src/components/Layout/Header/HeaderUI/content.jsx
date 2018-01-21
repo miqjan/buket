@@ -8,7 +8,7 @@ import Login from './login.jsx';
 import UserInfo from './userinfo.jsx';
 import SubMenu from '../Sidebar/index.jsx';
 
-import {SignIn} from '../../../../actions/Auth';
+import {SignIn, SignOut} from '../../../../actions/Auth';
 
 class HeadContent extends Component {
     constructor(props) {
@@ -202,7 +202,7 @@ class HeadContent extends Component {
                     </div>
                     {
                         this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
-                        this.props.isSignIn? <UserInfo userInfo={this.props.data}/> : <Login SignIn = {this.props.SignIn}/>}
+                        this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data}/> : <Login SignIn = {this.props.SignIn}/>}
                 </div>
                 <div className="container">
                     <div className="header-logo">
@@ -220,6 +220,7 @@ HeadContent.propTypes = {
     data: PropTypes.object,
     // menuItem: PropTypes.array.isRequired,
     // subMenuItem: PropTypes.array.isRequired,
+    SignOut: PropTypes.func,
     SignIn: PropTypes.func,
 };
 const mapStateToProps = (state) => {
@@ -233,6 +234,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         SignIn: (email, password) => dispatch ( SignIn( email, password ) ),
+        SignOut: () => dispatch ( SignOut () ),
     };
 };
 

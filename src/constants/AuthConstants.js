@@ -3,3 +3,5 @@ export const SIGN_IN_ERORR = "SIGN_IN_ERORR";
 export const SIGN_IN_LOADING = "SIGN_IN_LOADING";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_ERORR = "SIGN_UP_ERORR";
+export const SIGN_OUT_ERORR = "SIGN_OUT_ERORR;"
+export const SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS";

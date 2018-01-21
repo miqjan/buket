@@ -1,4 +1,5 @@
-import {SIGN_IN_SUCCESS,SIGN_IN_ERORR,SIGN_IN_LOADING,SIGN_UP_SUCCESS,SIGN_UP_ERORR} from '../constants/AuthConstants';
+import {SIGN_IN_SUCCESS, SIGN_IN_ERORR, SIGN_IN_LOADING, SIGN_UP_SUCCESS, SIGN_UP_ERORR,
+    SIGN_OUT_ERORR, SIGN_OUT_SUCCESS} from '../constants/AuthConstants';
 
 const initStore = {
     isSignIn : false,
@@ -19,6 +20,10 @@ const AuthReducer = (store = initStore, action) => {
             return;
         case SIGN_UP_ERORR:
             return;
+        case SIGN_OUT_ERORR:
+            return Object.assign({},store,{error:action.payload, message: action.payload.message});
+        case SIGN_OUT_SUCCESS:
+            return Object.assign({},store,{isSignIn:false, message: action.payload.message});
         default:
             return store;
     }

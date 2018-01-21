@@ -44,6 +44,10 @@ class UserInfo extends Component {
         this.setState({active:!this.state.active});
     }
 
+    SignOut () {
+        this.props.SignOut();
+    }
+
     render() {
         return (
            
@@ -63,7 +67,7 @@ class UserInfo extends Component {
                                     <button type="button"><Icon name="cogs" />Settings</button>
                                 </li>
                                 <li className="sign-out">
-                                    <button type="button"><Icon name="sign-out" />Sign out</button>
+                                    <button onClick={this.SignOut.bind(this)} type="button"><Icon name="sign-out"  />Sign out</button>
                                 </li>
                             </ul>
                         </div>
@@ -77,6 +81,7 @@ class UserInfo extends Component {
 
 UserInfo.propTypes = {
    userInfo: PropTypes.object.isRequired,
+   SignOut: PropTypes.func.isRequired,
 };
 
 export default UserInfo;

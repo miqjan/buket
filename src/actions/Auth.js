@@ -1,7 +1,8 @@
 import axios from 'axios';
 import Alert from 'react-s-alert';
 
-import {SIGN_IN_SUCCESS,SIGN_IN_ERORR,SIGN_IN_LOADING,SIGN_UP_SUCCESS,SIGN_UP_ERORR} from '../constants/AuthConstants';
+import {SIGN_IN_SUCCESS,SIGN_IN_ERORR,SIGN_IN_LOADING,SIGN_UP_SUCCESS,SIGN_UP_ERORR,
+    SIGN_OUT_ERORR,SIGN_OUT_SUCCESS} from '../constants/AuthConstants';
 import config from '../../config/index.json';
 function SignInErorr(error) {
     return {
@@ -14,6 +15,19 @@ function SignInSuccess(user) {
     return {
         type: SIGN_IN_SUCCESS,
         payload: user,
+    };
+}
+function SignOutErorr(error) {
+    return {
+        type: SIGN_OUT_ERORR,
+        payload : error,
+    };
+}
+function SignOutSuccess(message) {
+    
+    return {
+        type: SIGN_OUT_SUCCESS,
+        payload: {message: message},
     };
 }
 function SignInLoading(loading) {
@@ -77,4 +91,19 @@ export function SignIn(email, password) {
             dispatch(SignInLoading(false));
         }
     };
+}
+export function SignOut() {
+    return async(dispatch) => {
+        try{
+            dispatch(SignInLoading(true));
+            window.localStorage.clear();
+            dispatch(SignOutSuccess("User successfully signOut"));
+            Alert.success("User successfully signOut");
+        } catch(error) {
+            dispatch(SignOutErorr(error));
+        } finally {
+            dispatch(SignInLoading(false));
+        }
+    };
+    
 }
