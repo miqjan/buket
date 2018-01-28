@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute/index.jsx';
 import RouteGrup from './RouteGrup/index.jsx';
 
 import {IsSignIn} from '../actions/Auth';
+import ProductList from '../components/Body/Product/table.jsx';
 
 
 class Root extends Component {
@@ -25,7 +26,7 @@ class Root extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+         
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -60,25 +61,25 @@ class Root extends Component {
                     <Switch>
                         <RouteGrup path="/pages">
                             <Switch>
-                                <Route path="/pages/about_as" render={()=>(<div>ABOUT US</div>)}/>
-                                <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
+                                <Route path="/pages/:page" render={()=>(<div>ABOUT US</div>)}/>
+                                {/* <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
                                 <Route path="/pages/delivery" render={()=>(<div>DELIVERY</div>)}/>
                                 <Route path="/pages/agreement" render={()=>(<div>AGREEMENT</div>)}/>
                                 <Route path="/pages/payment" render={()=>(<div>PAYMENT</div>)}/>
                                 <Route path="/pages/*" render={()=>(<div>not found</div>)}/>
-                                <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/>
+                                <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/> */}
                             </Switch>
                         </RouteGrup>
                         <RouteGrup path="/categories">
                             <Switch>
-                                <Route exact path="/categories/flowers" render={()=>(<div>Flowers</div>)} />
-                                <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>
+                                <Route path="/categories/:categories/:subcategories?" component={ProductList} />
+                                {/* <Route path="/categories/funeral" render={()=>(<div>Funeral</div>)}/>
                                 <Route path="/categories/cakes" render={()=>(<div>Cakes</div>)}/>
                                 <Route path="/categories/drinks" render={()=>(<div>Drinks</div>)}/>
                                 <Route path="/categories/perfume" render={()=>(<div>Perfume</div>)}/>
                                 <Route path="/categories/phone" render={()=>(<div>Phone</div>)}/>
-                                <Route path="/categories/*" render={()=>(<div>Not found</div>)}/>
-                                <Redirect exact from="/categories" to={{ pathname: '/categories/flowers',}}/>
+                                <Route path="/categories/*" render={()=>(<div>Not found</div>)}/> */}
+                                
                             </Switch>
                         </RouteGrup>
                         <Redirect to={{ pathname: '/categories/flowers',}}/>
@@ -113,4 +114,5 @@ const mapDispatchToProps = (dispatch) => {
         IsSignIn: () =>  dispatch ( IsSignIn() )
     };
 };
+
 export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Root) );

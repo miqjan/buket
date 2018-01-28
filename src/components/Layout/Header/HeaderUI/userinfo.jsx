@@ -64,7 +64,7 @@ class UserInfo extends Component {
                         <div className={`drop-sign-in ${this.state.active? "active": ""}`}>
                             <ul>
                                 <li className="settings">
-                                    <button type="button"><Icon name="cogs" />Settings</button>
+                                    <Link to={'/private/settings'}><button type="button"><Icon name="cogs" />Settings</button></Link>
                                 </li>
                                 <li className="sign-out">
                                     <button onClick={this.SignOut.bind(this)} type="button"><Icon name="sign-out"  />Sign out</button>

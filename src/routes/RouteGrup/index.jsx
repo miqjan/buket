@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Head from '../../components/Layout/Header/index.jsx';
+import Slider from '../../components/Layout/Slider/index.jsx';
 import Footer from '../../components/Layout/Footer/index.jsx';
+import Advertising from '../../components/Layout/Advertising/list.jsx';
 import {Route} from 'react-router-dom';
 
 class RouteGrup extends Component {
@@ -41,13 +43,15 @@ class RouteGrup extends Component {
     render() {
         return (
             <div>
-            <Head/>
-            <div className="customBody">
-                <Route path={this.props.path}>
-                    {this.props.children}
-                </Route>
-            </div>
-            <Footer/>
+                <Head />
+                <Slider />
+                <div className="customBody container">
+                    <Route path={this.props.path}>
+                        {this.props.children}
+                    </Route>
+                    <Advertising />                    
+                </div>
+                <Footer />
             </div>
         );
     }

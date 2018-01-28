@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Route,Redirect} from 'react-router-dom';
-class PrivateRoute extends Component {
+
+import Item from './item.jsx';
+
+
+class List extends Component {
     constructor(props) {
         super(props);
+
     }
 
     componentWillMount() {
@@ -35,21 +39,14 @@ class PrivateRoute extends Component {
     }
 
     render() {
-        if(this.props.isSignIn)
-        {
-            return (
-                <Route path={this.props.path}>
-                    {this.props.children}
-                </Route>
-            );
-        } else {
-            return(<Redirect to={{ pathname: '/categories/flowers',}}/>);
-        }
+        return (
+            <div className="advertising-list">
+                <Item />
+                <Item />
+                <Item />
+            </div>
+        );
     }
 }
 
-PrivateRoute.propTypes = {
-    isSignIn: PropTypes.bool.isRequired,
-};
-
-export default PrivateRoute;
+export default List;
