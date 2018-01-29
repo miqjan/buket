@@ -9,6 +9,8 @@ import UserInfo from './userinfo.jsx';
 import SubMenu from '../Sidebar/index.jsx';
 
 import {SignIn, SignOut} from '../../../../actions/Auth';
+import {getCategory} from '../../../../actions/Category';
+
 
 class HeadContent extends Component {
     constructor(props) {
@@ -16,7 +18,7 @@ class HeadContent extends Component {
     }
 
     componentWillMount() {
-
+        this.props.getCategory();
     }
 
     componentDidMount() {
@@ -67,120 +69,6 @@ class HeadContent extends Component {
             },
         ];
         
-        const subMenuItem = [
-            {
-                name: "Ծաղիկներ",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Զամբյուղներ",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Կոմպոզիցիա",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Հոլանդական",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Վարդ",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Սգո",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Պսակ",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Զամբյուղներ",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Տորթեր",
-                imgUrl: "category2.jpg",
-                category: [
-                    {
-                        name: "Սիրային",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Նոր Տարի",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծննդյան",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Մկրտության",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Մանկական",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Դասական",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Խմիչքներ",
-                imgUrl: "category3.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Ծաղիկներ",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-            {
-                name: "Ծաղիկներ",
-                imgUrl: "category1.jpg",
-                category: [
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                    {
-                        name: "Ծաղկեփնջեր",
-                        path: "/categories/flowers",
-                    },
-                ],
-            },
-        ];
         return (
             <div className="header-content">
                 <div className="header-wrap">
@@ -195,14 +83,15 @@ class HeadContent extends Component {
                             },this)}
                             <li className="dropDown">
                                 <a href="javascript:">Տեսականի <span><Icon name="angle-down" /></span></a>
-                                <SubMenu subMenuItem={subMenuItem}/>
+                                <SubMenu categorys={this.props.category}/>
                             </li>
 
                         </ul>
                     </div>
-                    {
-                        this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
-                        this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data}/> : <Login SignIn = {this.props.SignIn}/>}
+                        {
+                            this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
+                            this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data}/> : <Login SignIn = {this.props.SignIn}/>
+                        }
                 </div>
                 <div className="container">
                     <div className="header-logo">
@@ -222,6 +111,7 @@ HeadContent.propTypes = {
     // subMenuItem: PropTypes.array.isRequired,
     SignOut: PropTypes.func,
     SignIn: PropTypes.func,
+    getCategory: PropTypes.func,
 };
 const mapStateToProps = (state) => {
     return {
@@ -229,12 +119,14 @@ const mapStateToProps = (state) => {
         error: state.user.error,
         data: state.user.data,
         loading: state.user.loading,
+        category: state.category,
     };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
         SignIn: (email, password) => dispatch ( SignIn( email, password ) ),
         SignOut: () => dispatch ( SignOut () ),
+        getCategory: () => dispatch ( getCategory() )
     };
 };
 

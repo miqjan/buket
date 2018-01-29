@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import { Icon } from 'react-fa';
+import config from '../../../../../config/index.json';
 
 class Sidebar extends Component {
     constructor(props) {
@@ -37,44 +39,54 @@ class Sidebar extends Component {
     }
 
     render() {
-        return (
-            <div className="subMenu">
-                <ul>
-                    {
-                        this.props.subMenuItem.map((item,index)=>{
-                            return (
-                                <li key={index}>
-                                    <div className="subItemTitle">
-                                        <h3>{item.name}</h3>
-                                    </div>
-                                    <div className="subItemImg">
-                                        <img src={"../public/img/"+item.imgUrl} alt="flower"/>
-                                    </div>
-                                    <ul>
-                                        {
-                                            item.category.map((item2,index2) => {
-                                                return (
-                                                    <li key={index2}>
-                                                        <Link to={item2.path} >
-                                                            {item2.name}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                            },this)
-                                        }
-                                    </ul>
-                                </li>  
-                            )
-                        },this)
-                    }
-                </ul>
-            </div>
-        );
+        
+        if(this.props.categorys.loading){
+            return (
+                <div className="subMenu">
+                    <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>
+                </div>
+            );
+        } else {
+            return (
+                <div className="subMenu">
+                    <ul>
+                        {
+                            this.props.categorys.data.map((item,index)=>{
+                                return (
+                                    <li key={index}>
+                                        <div className="subItemTitle">
+                                            <h3>{item.name.en}</h3>
+                                        </div>
+                                        <div className="subItemImg">
+                                            <img src={config.static_server_url + item.image_url} alt="flower"/>
+                                        </div>
+                                        <ul>
+                                            {
+                                                item.subCategories.map((item2,index2) => {
+                                                    return (
+                                                        <li key={index2}>
+                                                            <Link to={"/categories/"+item2.url} >
+                                                                {item2.name.en}
+                                                            </Link>
+                                                        </li>
+                                                    )
+                                                },this)
+                                            }
+                                        </ul>
+                                    </li>  
+                                )
+                            },this)
+                        }
+                    </ul>
+                </div>
+            );
+        }
+       
     }
 }
 
 Sidebar.propTypes = {
-    subMenuItem: PropTypes.array.isRequired,
+    categorys: PropTypes.object.isRequired,
 };
 
 export default Sidebar;
