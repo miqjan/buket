@@ -52,7 +52,7 @@ class Item extends Component {
                             <h5>${this.props.product.price}</h5>
                     </div>
                         <div className="product-trash">
-                            <buttom>Add Cart</buttom>
+                            <a href="javascript:" >Add Cart</a>
                         </div>
                     </div>
                 </div>

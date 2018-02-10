@@ -11,10 +11,12 @@ import Item from './item.jsx';
 class Table extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            limit : 12,
+        }
     }
 
     componentWillMount() {
-        this.props.getProducts(this.props.match.params.categories);
                
     }
 
@@ -23,6 +25,7 @@ class Table extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        
 
     }
 
@@ -35,11 +38,24 @@ class Table extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if( ( this.props.match.params.categories !== prevProps.match.params.categories )||
+            this.state.limit !== prevState.limit ){
 
+            this.props.getProducts( this.props.match.params.categories, this.state.limit );
+
+            if( this.props.match.params.categories !== prevProps.match.params.categories ){
+                this.setState( {limit : 12} );
+            }
+        }
     }
 
     componentWillUnmount() {
 
+    }
+    addLimit(){
+        this.setState({
+            limit : this.state.limit + 8,
+        });
     }
 
     render() {
@@ -60,6 +76,10 @@ class Table extends Component {
                                 return (<Item key={index} product={product}/>)
                             },this)
                         }
+                        <div className="mor-products">
+                            {this.props.notMore ? ('') : (<a href="javascript:"  onClick={this.addLimit.bind(this)} >mor products</a>)}
+                             
+                        </div>
                     </div>
                 </div>
             );
@@ -77,13 +97,14 @@ const mapStateToProps = (state) => {
     return {
         error: state.products.error,
         data: state.products.data,
+        notMore : state.products.notMore,
         loading: state.products.loading,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getProducts: (categoyId) =>  dispatch ( getProducts(categoyId) )
+        getProducts: (categoyId, limit) =>  dispatch ( getProducts(categoyId, limit) )
     };
 };
 

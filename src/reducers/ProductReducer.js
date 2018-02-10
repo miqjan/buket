@@ -4,6 +4,7 @@ const initStore = {
     data : [],
     error : null, 
     loading: false,
+    notMore: false,
   
 }
 const ProductReducer = (store = initStore, action) => {
@@ -11,7 +12,7 @@ const ProductReducer = (store = initStore, action) => {
         case GET_CATEGORY_LOADING:
             return Object.assign({},store,{loading:action.payload});
         case GET_PRODUCTS_SUCCESS:
-            return Object.assign({},store,{data:action.payload.data, error: null,});
+            return Object.assign({},store,{data:action.payload.data.products, error: null, notMore:action.payload.data.notMore });
         case GET_PRODUCTS_ERORR:
             return Object.assign({},store,{error:action.payload, data : store.data});
         default:

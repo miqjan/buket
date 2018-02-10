@@ -23,11 +23,11 @@ function GetProductsLoading(loading) {
         payload: loading,
     };
 }
-export function getProducts(categoryId) {
+export function getProducts( categoryId, limit ) {
     return async( dispatch ) => {
         dispatch(GetProductsLoading(true));
         try {
-            let res = await axios.get(config.api_url+"products/"+categoryId);
+            let res = await axios.get(config.api_url+"products/"+categoryId+"?limit="+limit);
             dispatch(GetProductsSuccess(res.data));
         } catch (error) {
             dispatch(GetProductsError({
