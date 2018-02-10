@@ -65,7 +65,7 @@ class Sidebar extends Component {
                                                 item.subCategories.map((item2,index2) => {
                                                     return (
                                                         <li key={index2}>
-                                                            <Link to={"/categories/"+item2.url} >
+                                                            <Link to={"/categories/"+item2._id} >
                                                                 {item2.name.en}
                                                             </Link>
                                                         </li>

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { getProducts } from '../../../actions/Product'
 
 import Item from './item.jsx';
 
@@ -7,11 +11,11 @@ import Item from './item.jsx';
 class Table extends Component {
     constructor(props) {
         super(props);
-
     }
 
     componentWillMount() {
-
+        this.props.getProducts(this.props.match.params.categories);
+               
     }
 
     componentDidMount() {
@@ -39,20 +43,48 @@ class Table extends Component {
     }
 
     render() {
-        return (
-            <div className="product-wrap">
-                <div className="product-table">
-                {this.props.match.params.categories}
-                {this.props.match.params.subcategories}
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
+        if(this.props.loading){
+            return (
+                <div className="product-wrap">
+                    <div className="product-table">
+                       Loading...
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div className="product-wrap">
+                    <div className="product-table">
+                        {
+                            this.props.data.map(( product, index )=>{
+                                return (<Item key={index} product={product}/>)
+                            },this)
+                        }
+                    </div>
+                </div>
+            );
+        }
+        
     }
 }
+Table.propTypes = {
+    getProducts : PropTypes.func.isRequired,
+    data: PropTypes.array,
+    error: PropTypes.object,
+    loading: PropTypes.bool.isRequired,
+};
+const mapStateToProps = (state) => {
+    return {
+        error: state.products.error,
+        data: state.products.data,
+        loading: state.products.loading,
+    };
+};
 
-export default Table;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getProducts: (categoyId) =>  dispatch ( getProducts(categoyId) )
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
