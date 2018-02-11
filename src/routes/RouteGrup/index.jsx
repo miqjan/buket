@@ -4,6 +4,7 @@ import Head from '../../components/Layout/Header/index.jsx';
 import Slider from '../../components/Layout/Slider/index.jsx';
 import Footer from '../../components/Layout/Footer/index.jsx';
 import Advertising from '../../components/Layout/Advertising/list.jsx';
+import Cotegory from '../../components/Layout/Category/index.jsx'; 
 import {Route} from 'react-router-dom';
 
 class RouteGrup extends Component {
@@ -46,10 +47,13 @@ class RouteGrup extends Component {
                 <Head />
                 <Slider />
                 <div className="customBody container">
-                    <Route path={this.props.path}>
-                        {this.props.children}
-                    </Route>
-                    <Advertising />                    
+                    <div className="body-wrapp">
+                        <Cotegory/>
+                        <Route path={this.props.path} {...this.props}>
+                            {this.props.children}
+                        </Route>
+                        <Advertising />   
+                    </div>                 
                 </div>
                 <Footer />
             </div>

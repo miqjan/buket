@@ -59,6 +59,17 @@ class Root extends Component {
                 </PrivateRoute>
                 <PublicRoute path="/">
                     <Switch>
+                        {/* <RouteGrup path="/pages" exect>
+                            <Switch>
+                                <Route path="/pages/:page" render={()=>(<div>ABOUT US</div>)}/>
+                                {/* <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
+                                <Route path="/pages/delivery" render={()=>(<div>DELIVERY</div>)}/>
+                                <Route path="/pages/agreement" render={()=>(<div>AGREEMENT</div>)}/>
+                                <Route path="/pages/payment" render={()=>(<div>PAYMENT</div>)}/>
+                                <Route path="/pages/*" render={()=>(<div>not found</div>)}/>
+                                <Redirect exact from="/pages" to={{ pathname: '/pages/payment',}}/
+                            </Switch>
+                        </RouteGrup> */}
                         <RouteGrup path="/pages">
                             <Switch>
                                 <Route path="/pages/:page" render={()=>(<div>ABOUT US</div>)}/>

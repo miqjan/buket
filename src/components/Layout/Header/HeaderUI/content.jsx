@@ -6,7 +6,6 @@ import { Icon } from 'react-fa';
 
 import Login from './login.jsx';
 import UserInfo from './userinfo.jsx';
-import SubMenu from '../Sidebar/index.jsx';
 
 import {SignIn, SignOut} from '../../../../actions/Auth';
 import {getCategory} from '../../../../actions/Category';
@@ -18,7 +17,7 @@ class HeadContent extends Component {
     }
 
     componentWillMount() {
-        this.props.getCategory();
+
     }
 
     componentDidMount() {
@@ -81,11 +80,7 @@ class HeadContent extends Component {
                                     </li>
                                 );
                             },this)}
-                            <li className="dropDown">
-                                <a href="javascript:">Տեսականի <span><Icon name="angle-down" /></span></a>
-                                <SubMenu categorys={this.props.category}/>
-                            </li>
-
+                            
                         </ul>
                     </div>
                         {

@@ -4,7 +4,7 @@ const initStore = {
     data : [],
     error : null, 
     loading: false,
-    notMore: false,
+    notMore: true,
   
 }
 const ProductReducer = (store = initStore, action) => {
