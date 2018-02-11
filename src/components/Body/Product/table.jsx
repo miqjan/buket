@@ -8,11 +8,13 @@ import { getProducts } from '../../../actions/Product'
 import Item from './item.jsx';
 
 
+
+
 class Table extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            limit : 12,
+            limit : 9,
         }
     }
 
@@ -21,7 +23,7 @@ class Table extends Component {
     }
 
     componentDidMount() {
-
+        this.props.getProducts( this.props.match.params.categories, this.state.limit );
     }
 
     componentWillReceiveProps(nextProps) {
@@ -54,7 +56,7 @@ class Table extends Component {
     }
     addLimit(){
         this.setState({
-            limit : this.state.limit + 8,
+            limit : this.state.limit + 6,
         });
     }
 
@@ -76,10 +78,9 @@ class Table extends Component {
                                 return (<Item key={index} product={product}/>)
                             },this)
                         }
-                        <div className="mor-products">
-                            {this.props.notMore ? ('') : (<a href="javascript:"  onClick={this.addLimit.bind(this)} >mor products</a>)}
-                             
-                        </div>
+                        {!this.props.notMore && (<div className="mor-products">
+                            <a href="javascript:"  onClick={this.addLimit.bind(this)} >more products</a>
+                        </div>)}
                     </div>
                 </div>
             );
