@@ -71,6 +71,11 @@ class Login extends Component {
                 
                 <div className="login">
                     <ul>
+                        <li>
+                            <div className="header-logo">
+                                <img src="../../../../../public/img/header-logo.png" alt=""/>
+                            </div>
+                        </li>
                         <li><Link to={'#'}>Sign up</Link></li>
                         <li className="drop-btn">
                             <a href="javascript:" className={this.state.active? "active": ""} onClick={this.OpenDropSignIn.bind(this)} >Sign in</a>

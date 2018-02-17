@@ -1,3 +1,6 @@
+.head-overflow{
+  overflow: hidden;
+}
 header {
     padding-bottom: 10px;
     ul {
@@ -6,7 +9,11 @@ header {
         }
     }
     .pre-header{
-        overflow: hidden;
+    }
+   
+    .main-container{
+        width: 1600px;
+        margin: 0 auto;
     }
     .header-top {
         display: flex;
@@ -23,7 +30,7 @@ header {
             border-width: 0 1000px 34px 1000px;
             border-color: transparent transparent #aad342 transparent;
             bottom: 0;
-            right: -890px;
+            right: -685px;
             z-index: -1;
         }
         .top-info {
@@ -76,7 +83,7 @@ header {
         .header-logo{
             position: absolute;
             right: 10px;
-            bottom: -10px;
+            bottom: -13px;
             background-color: #ffffff;
             width: 220px;
             height: 100px;
@@ -214,6 +221,7 @@ header {
                 padding-top: 5px;
                 >li{
                     padding-left: 15px;
+                    position: relative;
                     a{
                         text-decoration: none;
                         color: #ffffff;
@@ -236,11 +244,15 @@ header {
                 align-items: center;
                 >li{
                     padding: 0 15px;
+                    position: relative;
                     border-right: 1px solid #ffffff;
                     font-size: 25px;
                     color: #ffffff;
                     cursor: pointer;
                     transition: all 0.5s;
+                    .header-logo{
+                        bottom: -25px;
+                    }
                     &:last-child{
                         border: none;
                     }
@@ -298,7 +310,7 @@ header {
                 transition: all 0.5s;
                 max-height: 0;
                 box-shadow: -7px 12px 19px -6px rgba(0, 0, 0, 0.3);
-                margin-top: -2px;
+                margin-top: 10px;
                 width: 256px;
                 >ul{
                     border: 1px solid #cccccc;

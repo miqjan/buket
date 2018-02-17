@@ -43,9 +43,11 @@ class RouteGrup extends Component {
 
     render() {
         return (
-            <div>
-                <Head />
-                <Slider />
+            <div >
+                <div className="head-overflow">
+                    <Head />
+                    <Slider />
+                </div>
                 <div className="customBody container">
                     <div className="body-wrapp">
                         <Cotegory/>

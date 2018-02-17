@@ -54,6 +54,11 @@ class UserInfo extends Component {
             <div className="userinfo">
                 <ul>
                     <li>
+                        <div className="header-logo">
+                            <img src="../../../../../public/img/header-logo.png" alt=""/>
+                        </div>
+                    </li>
+                    <li>
                         <Link to={'#'}><Icon name="shopping-cart" /><span className="product-count">0</span></Link>
                     </li>
                     <li className="drop-btn">
