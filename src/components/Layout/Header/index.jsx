@@ -42,11 +42,15 @@ class Head extends Component {
         return (
             <header>
                 <div className="pre-header">
-                    <div className="container">
+                    <div className="main-container">
                         <HeadTop />
                     </div>
+                    <div className="header-content">
+                        <div className="main-container">
+                            <HeadContent />
+                        </div>
+                    </div>
                 </div>
-                <HeadContent />
             </header>
         );
     }

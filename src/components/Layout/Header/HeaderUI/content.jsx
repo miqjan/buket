@@ -69,31 +69,26 @@ class HeadContent extends Component {
         ];
         
         return (
-            <div className="header-content">
-                <div className="header-wrap">
-                    <div className="header-menu">
-                        <ul>
-                            {menuItem.map((item,index)=>{
-                                return (
-                                    <li key={index}>
-                                        <Link to={item.path} >{item.name}</Link>
-                                    </li>
-                                );
-                            },this)}
-                            
-                        </ul>
-                    </div>
-                        {
-                            this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
-                            this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data}/> : <Login SignIn = {this.props.SignIn}/>
-                        }
+            <div className="header-wrap">
+                <div className="header-menu">
+                    <ul>
+                        {menuItem.map((item,index)=>{
+                            return (
+                                <li key={index}>
+                                    <Link to={item.path} >{item.name}</Link>
+                                </li>
+                            );
+                        },this)}
+                        
+                    </ul>
+        
                 </div>
-                <div className="container">
-                    <div className="header-logo">
-                        <img src="../../../../../public/img/header-logo.png" alt=""/>
-                    </div>
-                </div>
+                    {
+                        this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
+                        this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data}/> : <Login SignIn = {this.props.SignIn}/>
+                    }
             </div>
+           
         );
     }
 }
