@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Icon } from 'react-fa';
+import Advertising from '../Advertising/list.jsx';
 
 import {getCategory} from '../../../actions/Category';
 import InputRange from 'react-input-range';
+import translate from '../../../translations';
 
 
 class Category extends Component {
@@ -17,8 +19,9 @@ class Category extends Component {
                 min: 5,
                 max: 10,
             },
-
+            activeIndex: -1,
         }
+        this.translate = translate(props.language);
     }
 
     componentWillMount() {
@@ -30,7 +33,7 @@ class Category extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        this.translate = translate(nextProps.language);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -50,7 +53,10 @@ class Category extends Component {
     }
 
     setActiveClass(e){
-        console.log(e.target);
+        if(this.state.activeIndex !== e.target.id)
+            this.setState({activeIndex: e.target.id});
+        else 
+            this.setState({activeIndex: -1});
     }
 
     render() {
@@ -58,19 +64,19 @@ class Category extends Component {
             return (     
                 <div className="filter">
                     <div className="filter-menu">
-                        <h3>Categories</h3>
+                        <h3>{this.translate.application.category.name}</h3>
                         <ul>
                             {this.props.category.data.map((item, index) => {
                                 return(
-                                    <li key={index} onClick={this.setActiveClass} >
-                                        <h4>{item.name.en}</h4>
-                                        <ul>
+                                    <li key={index}  >
+                                        <h4 id={index}  onClick={this.setActiveClass.bind(this)} >{item.name[this.props.language]}</h4>
+                                        <ul className={index === +this.state.activeIndex? 'active':''}>
                                         {
                                             item.subCategories.map((item2,index2) => {
                                                 return (
                                                     <li key={index2}>
                                                         <Link to={"/categories/"+item2._id} >
-                                                            {item2.name.en}
+                                                            {item2.name[this.props.language]}
                                                         </Link>
                                                     </li>
                                                 )
@@ -83,7 +89,7 @@ class Category extends Component {
                         </ul>
                     </div>
                     <div className="filter-slide">
-                        <h3>Filters</h3>
+                        <h3>{this.translate.application.category.filter}</h3>
                         <InputRange
                             allowSameValues
                             maxValue={20}
@@ -94,6 +100,7 @@ class Category extends Component {
                             onChangeComplete={value => console.log(value)} />
 
                     </div>
+                    <Advertising />   
                 </div>
             )
         } else {
@@ -105,10 +112,12 @@ class Category extends Component {
 
 Category.propTypes = {
     getCategory: PropTypes.func,
+    language: PropTypes.string,
 };
 const mapStateToProps = (state) => {
     return {
         category: state.category,
+        language: state.language.location,
     };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -5,6 +5,7 @@ import Alert from 'react-s-alert';
 import {Icon} from 'react-fa';
 
 
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -76,9 +77,9 @@ class Login extends Component {
                                 <img src="../../../../../public/img/header-logo.png" alt=""/>
                             </div>
                         </li>
-                        <li><Link to={'#'}>Sign up</Link></li>
+                        <li><Link to={'#'}>{this.props.translate.application.header.auth.sign_up}</Link></li>
                         <li className="drop-btn">
-                            <a href="javascript:" className={this.state.active? "active": ""} onClick={this.OpenDropSignIn.bind(this)} >Sign in</a>
+                            <a href="javascript:" className={this.state.active? "active": ""} onClick={this.OpenDropSignIn.bind(this)} >{this.props.translate.application.header.auth.sign_in}</a>
                             <div className={`drop-sign-in ${this.state.active? "active": ""}`}>
                                 <ul>
                                     <form >
@@ -89,7 +90,7 @@ class Login extends Component {
                                             <input onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} name="password"  type="password" placeholder="Password"/>
                                         </li>
                                         <li className="sign-in">
-                                            <button type="button"  onClick={this.ClickSignIn.bind(this)}><Icon name="sign-in" />Sign in</button>
+                                            <button type="button"  onClick={this.ClickSignIn.bind(this)}><Icon name="sign-in" />{this.props.translate.application.header.auth.sign_in}</button>
                                         </li>
                                         <li className="fb-sign-in">
                                             <button type="button">Facebook</button>
@@ -105,8 +106,5 @@ class Login extends Component {
     }
 }
 
-Login.propTypes = {
-    SignIn: PropTypes.func,
-};
 
 export default Login;

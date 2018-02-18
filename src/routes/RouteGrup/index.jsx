@@ -47,15 +47,16 @@ class RouteGrup extends Component {
                 <div className="head-overflow">
                     <Head />
                     <Slider />
-                </div>
-                <div className="customBody container">
-                    <div className="body-wrapp">
-                        <Cotegory/>
-                        <Route path={this.props.path} {...this.props}>
-                            {this.props.children}
-                        </Route>
-                        <Advertising />   
-                    </div>                 
+                
+                    <div className="customBody container">
+                        <div className="body-wrapp">
+                            <Cotegory/>
+                            <Route path={this.props.path} {...this.props}>
+                                {this.props.children}
+                            </Route>
+                            
+                        </div>                 
+                    </div>
                 </div>
                 <Footer />
             </div>

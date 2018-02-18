@@ -69,10 +69,10 @@ class UserInfo extends Component {
                         <div className={`drop-sign-in ${this.state.active? "active": ""}`}>
                             <ul>
                                 <li className="settings">
-                                    <Link to={'/private/settings'}><button type="button"><Icon name="cogs" />Settings</button></Link>
+                                    <Link to={'/private/settings'}><button type="button"><Icon name="cogs" />{this.props.translate.application.header.setting}</button></Link>
                                 </li>
                                 <li className="sign-out">
-                                    <button onClick={this.SignOut.bind(this)} type="button"><Icon name="sign-out"  />Sign out</button>
+                                    <button onClick={this.SignOut.bind(this)} type="button"><Icon name="sign-out"  />{this.props.translate.application.header.auth.sign_out}</button>
                                 </li>
                             </ul>
                         </div>

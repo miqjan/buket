@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { getProducts } from '../../../actions/Product'
 
 import Item from './item.jsx';
+import translate from '../../../translations';
 
 
 
@@ -14,8 +15,9 @@ class Table extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            limit : 9,
+            limit : 12,
         }
+        this.translate = translate(props.language);
     }
 
     componentWillMount() {
@@ -27,8 +29,7 @@ class Table extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        
-
+        this.translate = translate(nextProps.language);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -56,7 +57,7 @@ class Table extends Component {
     }
     addLimit(){
         this.setState({
-            limit : this.state.limit + 6,
+            limit : this.state.limit + 8,
         });
     }
 
@@ -75,11 +76,11 @@ class Table extends Component {
                     <div className="product-table">
                         {
                             this.props.data.map(( product, index )=>{
-                                return (<Item key={index} product={product}/>)
+                                return (<Item key={index} product={product} translate={this.translate}/>)
                             },this)
                         }
                         {!this.props.notMore && (<div className="mor-products">
-                            <a href="javascript:"  onClick={this.addLimit.bind(this)} >more products</a>
+                            <a href="javascript:"  onClick={this.addLimit.bind(this)} >{this.translate.application.product.more}</a>
                         </div>)}
                     </div>
                 </div>
@@ -93,6 +94,7 @@ Table.propTypes = {
     data: PropTypes.array,
     error: PropTypes.object,
     loading: PropTypes.bool.isRequired,
+    language: PropTypes.string,
 };
 const mapStateToProps = (state) => {
     return {
@@ -100,6 +102,7 @@ const mapStateToProps = (state) => {
         data: state.products.data,
         notMore : state.products.notMore,
         loading: state.products.loading,
+        language: state.language.location,
     };
 };
 

@@ -4,16 +4,20 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Icon } from 'react-fa';
 
+
+
 import Login from './login.jsx';
 import UserInfo from './userinfo.jsx';
 
 import {SignIn, SignOut} from '../../../../actions/Auth';
 import {getCategory} from '../../../../actions/Category';
+import translate from '../../../../translations';
 
 
 class HeadContent extends Component {
     constructor(props) {
         super(props);
+        this.translate = translate(props.language);
     }
 
     componentWillMount() {
@@ -25,7 +29,7 @@ class HeadContent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        this.translate = translate(nextProps.language);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -47,23 +51,23 @@ class HeadContent extends Component {
     render() {
         const menuItem = [
             {
-                name:"Համաձայնագիր",
+                name: this.translate.application.header.pages.agreement,
                 path:"/pages/agreement",
             },
             {
-                name:"Վճարում",
+                name: this.translate.application.header.pages.payment,
                 path:"/pages/payment",
             },
             {
-                name:"Առաքում",
+                name: this.translate.application.header.pages.delivery,
                 path:"/pages/delivery",
             },
             {
-                name:"Մեր Մասին",
+                name: this.translate.application.header.pages.about_as,
                 path:"/pages/about_as",
             },
             {
-                name:"Հարցեր",
+                name: this.translate.application.header.pages.questions,
                 path:"/pages/questions",
             },
         ];
@@ -85,7 +89,8 @@ class HeadContent extends Component {
                 </div>
                     {
                         this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
-                        this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data}/> : <Login SignIn = {this.props.SignIn}/>
+                        this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data} translate={this.translate}/> :
+                        <Login SignIn = {this.props.SignIn} translate={this.translate}/>
                     }
             </div>
            
@@ -102,6 +107,7 @@ HeadContent.propTypes = {
     SignOut: PropTypes.func,
     SignIn: PropTypes.func,
     getCategory: PropTypes.func,
+    language: PropTypes.string,
 };
 const mapStateToProps = (state) => {
     return {
@@ -110,6 +116,7 @@ const mapStateToProps = (state) => {
         data: state.user.data,
         loading: state.user.loading,
         category: state.category,
+        language: state.language.location, 
     };
 };
 const mapDispatchToProps = (dispatch) => {

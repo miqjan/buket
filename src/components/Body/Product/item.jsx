@@ -52,7 +52,7 @@ class Item extends Component {
                             <h5>${this.props.product.price}</h5>
                     </div>
                         <div className="product-trash">
-                            <a href="javascript:" >Add Cart</a>
+                            <a href="javascript:" >{this.props.translate.application.product.add_card}</a>
                         </div>
                     </div>
                 </div>
@@ -62,6 +62,7 @@ class Item extends Component {
 }
 Item.propTypes = {
     product : PropTypes.object.isRequired,
+    translate: PropTypes.object.isRequired,
 }
 
 export default Item;
