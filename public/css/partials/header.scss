@@ -104,11 +104,11 @@ header {
 
         }
         .header-menu{
-            >ul{
-                >li{
+            ul{
+                li{
                     display: inline-block;
                     padding: 15px 20px 15px 0;
-                    >a{
+                    a{
                         font-size: 18px;
                         color: #ffffff;
                         text-decoration: none;
@@ -215,47 +215,13 @@ header {
                 }
             }
         }
-        .login{
+        .header-sing-menu{
             ul{
                 display: flex;
                 padding-top: 5px;
-                >li{
+                li{
                     padding-left: 15px;
                     position: relative;
-                    a{
-                        text-decoration: none;
-                        color: #ffffff;
-                        text-transform: uppercase;
-                        border: 1px solid #ffffff;
-                        padding: 10px 10px 6px;
-                        border-radius: 20px;
-                        transition: all 0.5s;
-                        &:hover{
-                            color: #e83379;
-                            background-color: #ffffff;
-                        }
-                    }
-                }
-            }
-        }
-        .userinfo{
-            >ul{
-                display: flex;
-                align-items: center;
-                >li{
-                    padding: 0 15px;
-                    position: relative;
-                    border-right: 1px solid #ffffff;
-                    font-size: 25px;
-                    color: #ffffff;
-                    cursor: pointer;
-                    transition: all 0.5s;
-                    .header-logo{
-                        bottom: -25px;
-                    }
-                    &:last-child{
-                        border: none;
-                    }
                     a{
                         text-decoration: none;
                         color: #ffffff;
@@ -286,6 +252,56 @@ header {
                         }
                         &.active{
                             transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+        }
+        .login{
+            ul{
+                display: flex;
+                padding-top: 5px;
+                li{
+                    padding-left: 15px;
+                    position: relative;
+                    a{
+                        text-decoration: none;
+                        color: #ffffff;
+                        text-transform: uppercase;
+                        border: 1px solid #ffffff;
+                        padding: 10px 10px 6px;
+                        border-radius: 20px;
+                        transition: all 0.5s;
+                        &:hover{
+                            color: #e83379;
+                            background-color: #ffffff;
+                        }
+                    }
+                }
+            }
+        }
+        .userinfo{
+           ul{
+               display: block;
+                li{
+                    padding: 0 15px;
+                    position: relative;
+                    font-size: 25px;
+                    color: #ffffff;
+                    cursor: pointer;
+                    transition: all 0.5s;
+                    .header-logo{
+                        bottom: -25px;
+                    }
+                    &:last-child{
+                        border: none;
+                    }
+                    a{
+                        text-decoration: none;
+                        color: #ffffff;
+                        transition: all 0.5s;
+                        &:hover{
+                            color: #aad342;
                         }
                     }
                     &:hover{

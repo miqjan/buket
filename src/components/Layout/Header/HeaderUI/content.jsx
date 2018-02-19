@@ -87,11 +87,26 @@ class HeadContent extends Component {
                     </ul>
         
                 </div>
-                    {
-                        this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
-                        this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data} translate={this.translate}/> :
-                        <Login SignIn = {this.props.SignIn} translate={this.translate}/>
-                    }
+                <div className="header-sing-menu">
+                    <ul>
+                        <li>
+                            <div className="header-logo">
+                                <img src="../../../../../public/img/header-logo.png" alt=""/>
+                            </div>
+                        </li>
+                        <li>
+                            <Link to={'#'}><Icon name="shopping-cart" /><span className="product-count">{this.props.card.length}</span></Link>
+                        </li>
+                        <li>
+                            {
+                                this.props.loading? <Icon style={{color:"white"}} name="circle-o-notch fa-spin fa-3x fa-fw"/>:
+                                this.props.isSignIn? <UserInfo SignOut={this.props.SignOut} userInfo={this.props.data} translate={this.translate}/> :
+                                <Login SignIn = {this.props.SignIn} translate={this.translate}/>
+                            }
+                        </li>
+                    
+                    </ul>
+                </div>
             </div>
            
         );
@@ -116,7 +131,8 @@ const mapStateToProps = (state) => {
         data: state.user.data,
         loading: state.user.loading,
         category: state.category,
-        language: state.language.location, 
+        language: state.language.location,
+        card : state.card.products,
     };
 };
 const mapDispatchToProps = (dispatch) => {

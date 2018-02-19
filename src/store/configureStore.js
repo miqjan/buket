@@ -36,11 +36,9 @@ const storeEncoded = localStorage.getItem("ukil");
 if(storeEncoded){
   const storeJson = Crypto.AES.decrypt(storeEncoded.toString(), "sicret");
   initialState = JSON.parse(storeJson.toString(Crypto.enc.Utf8));
-}
-else{
+} else {
   initialState = {}
 }
-
 export default function configureStore() {
   return createStore(
     rootReducer,

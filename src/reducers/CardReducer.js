@@ -1,14 +1,15 @@
-import { SET_PRODUCT, REMOVE_PRODUCT } from '../constants/ProductConstants';
+import { SET_PRODUCT, REMOVE_PRODUCT } from '../constants/CardConstants';
 const initStore = {
     isTemporary: true,
-    card: [],
+    products: [],
 }
 const CardReducer = (store = initStore, action) => {
     switch (action.type) {
         case SET_PRODUCT:
-            return Object.assign({},store,{loading:action.payload});
+            console.log('test--------------');
+            return Object.assign({},store,{products: action.payload});
         case REMOVE_PRODUCT:
-            return Object.assign({},store,{data:action.payload.data.products, error: null, notMore:action.payload.data.notMore });
+            return Object.assign({},store,{products: action.payload});
         default:
             return store;
     }

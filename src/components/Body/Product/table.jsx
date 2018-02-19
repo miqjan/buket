@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { getProducts } from '../../../actions/Product'
+import { addItem, removeItem } from '../../../actions/Card';
 
 import Item from './item.jsx';
 import translate from '../../../translations';
@@ -76,7 +77,10 @@ class Table extends Component {
                     <div className="product-table">
                         {
                             this.props.data.map(( product, index )=>{
-                                return (<Item key={index} product={product} translate={this.translate}/>)
+                                return (<Item key={index} product={product} translate={this.translate} card={{
+                                    add: this.props.addItem,
+                                    remove: this.props.removeItem,
+                                }}/>)
                             },this)
                         }
                         {!this.props.notMore && (<div className="mor-products">
@@ -95,6 +99,8 @@ Table.propTypes = {
     error: PropTypes.object,
     loading: PropTypes.bool.isRequired,
     language: PropTypes.string,
+    addItem: PropTypes.func,
+    removeItem: PropTypes.func,
 };
 const mapStateToProps = (state) => {
     return {
@@ -108,7 +114,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getProducts: (categoyId, limit) =>  dispatch ( getProducts(categoyId, limit) )
+        getProducts: (categoyId, limit) =>  dispatch ( getProducts(categoyId, limit) ),
+        addItem : (id) => dispatch(addItem(id)),
+        removeItem: (id) => dispatch(removeItem(id)),
     };
 };
 

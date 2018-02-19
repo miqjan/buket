@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 class Item extends Component {
     constructor(props) {
         super(props);
-
+        this.addToCard = this.addToCard.bind(this);
     }
 
     componentWillMount() {
@@ -40,6 +40,10 @@ class Item extends Component {
 
     }
 
+    addToCard(e) {
+        this.props.card.add(e.target.dataset.id);
+    }
+
     render() {
         return (
             <div className="product-item">
@@ -52,7 +56,7 @@ class Item extends Component {
                             <h5>${this.props.product.price}</h5>
                     </div>
                         <div className="product-trash">
-                            <a href="javascript:" >{this.props.translate.application.product.add_card}</a>
+                            <a href="javascript:" data-id={this.props.product._id} onClick={this.addToCard} >{this.props.translate.application.product.add_card}</a>
                         </div>
                     </div>
                 </div>
@@ -63,6 +67,7 @@ class Item extends Component {
 Item.propTypes = {
     product : PropTypes.object.isRequired,
     translate: PropTypes.object.isRequired,
+    card: PropTypes.object, 
 }
 
 export default Item;
