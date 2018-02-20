@@ -6,7 +6,6 @@ const initStore = {
 const CardReducer = (store = initStore, action) => {
     switch (action.type) {
         case SET_PRODUCT:
-            console.log('test--------------');
             return Object.assign({},store,{products: action.payload});
         case REMOVE_PRODUCT:
             return Object.assign({},store,{products: action.payload});

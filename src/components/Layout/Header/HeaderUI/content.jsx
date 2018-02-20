@@ -95,7 +95,7 @@ class HeadContent extends Component {
                             </div>
                         </li>
                         <li>
-                            <Link to={'#'}><Icon name="shopping-cart" /><span className="product-count">{this.props.card.length}</span></Link>
+                            <Link to={'#'}><Icon name="shopping-cart" /><span className="product-count">{this.props.card.products.length}</span></Link>
                         </li>
                         <li>
                             {
@@ -132,7 +132,7 @@ const mapStateToProps = (state) => {
         loading: state.user.loading,
         category: state.category,
         language: state.language.location,
-        card : state.card.products,
+        card : state.card,
     };
 };
 const mapDispatchToProps = (dispatch) => {
