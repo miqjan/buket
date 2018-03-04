@@ -95,7 +95,7 @@ class HeadContent extends Component {
                             </div>
                         </li>
                         <li>
-                            <Link to={'#'}><Icon name="shopping-cart" /><span className="product-count">{this.props.card.products.length}</span></Link>
+                            <Link to={'#'}><Icon className="cart" name="shopping-cart" /><span className="product-count">{this.props.card.products.length}</span></Link>
                         </li>
                         <li>
                             {

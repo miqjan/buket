@@ -69,6 +69,7 @@ class UserInfo extends Component {
                             </ul>
                         </div>
                     </li>
+                    <li className="close-drop"></li>
                 </ul>
             </div>
             

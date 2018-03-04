@@ -57,10 +57,6 @@ class Login extends Component {
             this.setState({'error':'Email or password cannot be blank.'});
         }
     }
-    
-    OpenDropSignIn () {
-        this.setState({active:!this.state.active});
-    }
 
     handleKeyPress(e) {
         if (e.key === 'Enter') {
@@ -72,9 +68,9 @@ class Login extends Component {
                 
                 <div className="login">
                     <ul>
-                        <li><Link to={'#'}>{this.props.translate.application.header.auth.sign_up}</Link></li>
-                        <li className="drop-btn">
-                            <a href="javascript:" className={this.state.active? "active": ""} onClick={this.OpenDropSignIn.bind(this)} >{this.props.translate.application.header.auth.sign_in}</a>
+                        <li className="sign-up"><Link to={'#'}>{this.props.translate.application.header.auth.sign_up}</Link></li>
+                        <li className="drop-btn" tabIndex="-1">
+                            <span>{this.props.translate.application.header.auth.sign_in}</span>
                             <div className={`drop-sign-in ${this.state.active? "active": ""}`}>
                                 <ul>
                                     <form >
@@ -94,6 +90,7 @@ class Login extends Component {
                                 </ul>
                             </div>
                         </li>
+                        <li className="close-drop"></li>
                     </ul>
                 </div>
             
