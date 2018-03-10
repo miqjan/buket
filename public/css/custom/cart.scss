@@ -1,0 +1,88 @@
+.shop-cart{
+    flex: 0 0 78%;
+    .step{
+        ul{
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+            &:after{
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: 25%;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 70%;
+                height: 1px;
+                background-color: #e33274;
+            }
+            li{
+                list-style: none;
+                text-align: center;
+                background-color: #ffffff;
+                padding: 0 15px;
+                color: #999999;
+                &.passed{
+                    color: #171717;
+                }
+                span.step-item{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    width: 42px;
+                    height: 42px;
+                    border: 1px solid #999999;
+                    border-radius: 50%;
+                    margin-bottom: 20px;
+                }
+                a{
+                    text-decoration: none;
+                    display: block;
+                    color: #ffffff;
+                    >span.step-item{
+                        background-color: #aad342;
+                        border: 1px solid #aad342;    
+                        font-weight: bold;                                    
+                    }
+                }
+                &.active{
+                    span.step-item{
+                        background-color: #e33274;
+                        border: 1px solid #e33274; 
+                        font-weight: bold;
+                        color: #ffffff;                           
+                    }
+                }
+            }
+        }
+    }
+    .cart-table{
+        padding: 50px 15px;
+        table{
+            width: 100%;
+                tr{
+                    border-top: 1px solid #e33274;                    
+                    td,th{
+                        padding: 20px 15px;                            
+                        &:first-child{
+                            width: 25%;
+                            img{
+                                width: 100%;
+                            }
+                        }
+                        &:last-child{
+                            text-align: right;
+                        }
+                    }
+                }
+            
+        }
+    }
+    .cart-check{
+        height: 200px;
+        border-bottom: 1px solid #c5c5c5;
+        background: #f7f7f7;
+    }
+}

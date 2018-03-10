@@ -11,6 +11,7 @@ import RouteGrup from './RouteGrup/index.jsx';
 import {IsSignIn} from '../actions/Auth';
 
 import ProductList from '../components/Body/Product/table.jsx';
+import ShopCart from '../components/Body/Pages/ShopCart.jsx';
 
 
 class Root extends Component {
@@ -73,7 +74,8 @@ class Root extends Component {
                         </RouteGrup> */}
                         <RouteGrup path="/pages">
                             <Switch>
-                                <Route path="/pages/:page" render={()=>(<div>ABOUT US</div>)}/>
+                                <Route  path="/pages/shopping-cart" component={ShopCart} />                                
+                                <Route  path="/:page" render={()=>(<div>ABOrefvcUT US</div>)}/>
                                 {/* <Route path="/pages/questions" render={()=>(<div>QUESTIONS</div>)}/>
                                 <Route path="/pages/delivery" render={()=>(<div>DELIVERY</div>)}/>
                                 <Route path="/pages/agreement" render={()=>(<div>AGREEMENT</div>)}/>
