@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import _ from 'lodash'
+import { connect } from 'react-redux';
+//import { getProductsByIdsArray } from '../../../actions/Product';
+import { removeItem, incrementCount, decrementCount } from '../../../actions/Card';
+import config from '../../../../config';
 
 class ShopCart extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {}
+        this.removeItem = this.removeItem.bind(this);
+        this.incrementCount = this.incrementCount.bind(this);
+        this.decrementCount = this.decrementCount.bind(this);
     }
 
     componentWillMount() {
-
+        this.setState({ products: this.props.card.products });
     }
 
     componentDidMount() {
@@ -17,7 +25,7 @@ class ShopCart extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        this.setState({ products: nextProps.card.products });
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -35,28 +43,52 @@ class ShopCart extends Component {
     componentWillUnmount() {
 
     }
-
+    removeItem(e) {
+        this.props.removeItem(e.target.dataset.id);
+    }
+    incrementCount(e) {
+        this.props.incrementCount(e.target.dataset.id);
+    }
+    decrementCount(e) {
+        this.props.decrementCount(e.target.dataset.id);
+    }
     render() {
+        if (_.isEmpty(this.state)) {
+            return ("Empty card");
+        }
         return (
             <div className="shop-cart">
-                <div className="step">
-                    <ul>
-                        <li className="passed">
-                            <Link to="#" >
-                                <span className="step-item">1</span>                        
-                            </Link>
-                            step 1
-                        </li>
-                        <li className="active">
-                            <span className="step-item">2</span>
-                            step 2
-                        </li>
-                        <li>
-                            <span className="step-item">3</span>                            
-                            step 3
-                        </li>
-                    </ul>
-                </div>
+                {this.props.isSignIn ? (
+                    <div className="step">
+                        <ul>
+                            <li className="active">
+                                <span className="step-item">1</span>
+                                ordering
+                            </li>
+                            <li >
+                                <span className="step-item">2</span>
+                                shipping
+                            </li>
+                            <li>
+                                <span className="step-item">3</span>
+                                billing
+                            </li>
+                        </ul>
+                    </div>
+                ):(
+                    <div className="step">
+                        <ul>
+                            <li className="active">
+                                signIn
+                            </li>
+                            <li >
+                                signUP
+                            </li>
+                        </ul>
+                    </div>
+                )
+                }
+
                 <div className="cart-content">
                     <div className="cart-table">
                         <table>
@@ -70,26 +102,41 @@ class ShopCart extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><img src="http://localhost:5000/images/products/f1be815e-d5c6-41ea-8352-7a3b34f9bf32.jpeg" alt="item"/></td>
-                                    <td>caxik</td>
-                                    <td>20</td>
-                                    <td>
-                                        <button type="button">-</button>
-                                        <input type="number" min="1" max="5"/>
-                                        <button type="button">+</button>
-                                    </td>
-                                    <td>100</td>
-                                </tr>
+                                {
+                                    this.state.products.map((product, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td><img src={config.static_server_url + product.imgUrl} alt="item" /></td>
+                                                <td>
+                                                    caxik
+                                                    <span className="remove" data-id={product.id} onClick={this.removeItem} >Remove</span>
+                                                </td>
+                                                <td>${product.price}</td>
+                                                <td>
+                                                    <ul>
+                                                        <li className="minus"><span data-id={product.id} onClick={this.decrementCount} >-</span></li>
+                                                        <li><input type="text" value={product.count} readOnly /></li>
+                                                        <li className="plus"><span data-id={product.id} onClick={this.incrementCount} >+</span></li>
+                                                    </ul>
+                                                </td>
+                                                <td>${product.count * product.price}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+
                             </tbody>
                         </table>
                     </div>
                     <div className="cart-check">
-                        <ul>
-                            <li>item1</li>
-                            <li>item2</li>
+                        <ul style={{padding :'50px'}} >
+                            <li>Total</li>
+                            <li>${this.state.products.reduce((sum,current)=>{
+                                return sum + (current.price * current.count);
+                            },0)}</li>
                         </ul>
                     </div>
+
                 </div>
             </div>
         );
@@ -97,7 +144,24 @@ class ShopCart extends Component {
 }
 
 ShopCart.propTypes = {
-   
+    isSignIn: PropTypes.bool,
+    card: PropTypes.object,
+    decrementCount: PropTypes.func,
+    incrementCount: PropTypes.func,
+    removeItem: PropTypes.func,
+};
+const mapStateToProps = (state) => {
+    return {
+        isSignIn: state.user.isSignIn,
+        card: state.card,
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        decrementCount: (id) => dispatch(decrementCount(id)),
+        incrementCount: (id) => dispatch(incrementCount(id)),
+        removeItem: (id) => dispatch(removeItem(id)),
+    };
 };
 
-export default ShopCart;
+export default connect(mapStateToProps, mapDispatchToProps)(ShopCart);

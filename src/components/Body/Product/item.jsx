@@ -41,7 +41,7 @@ class Item extends Component {
     }
 
     addToCard(e) {
-        this.props.card.add(e.target.dataset.id);
+        this.props.card.add(e.target.dataset.id, e.target.dataset.imgurl, e.target.dataset.price);
     }
 
     render() {
@@ -56,7 +56,10 @@ class Item extends Component {
                             <h5>${this.props.product.price}</h5>
                     </div>
                         <div className="product-trash">
-                            <a href="javascript:" data-id={this.props.product._id} onClick={this.addToCard} >{this.props.translate.application.product.add_card}</a>
+                            <a href="javascript:" data-id={this.props.product._id}
+                            data-imgurl={this.props.product.image_url}
+                            data-price={this.props.product.price}
+                            onClick={this.addToCard} >{this.props.translate.application.product.add_card}</a>
                         </div>
                     </div>
                 </div>
