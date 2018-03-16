@@ -8,8 +8,8 @@ header {
             list-style: none;
         }
     }
-    .pre-header{
-    }
+    // .pre-header{
+    // }
    
     .main-container{
         width: 1600px;
@@ -231,6 +231,7 @@ header {
                         }
                     }
                     span{
+                        font-size: 25px;
                         margin-left: 7px;
                         &.product-count{
                             font-size: 18px;
@@ -239,8 +240,8 @@ header {
                             display: inline-flex;
                             transform: translateY(-3px);
                             background-color: #779b1d;
-                            width: 20px;
-                            height: 20px;
+                            width: 25px;
+                            height: 25px;
                             border-radius: 50%;
                             justify-content: center;
                             align-items: center;

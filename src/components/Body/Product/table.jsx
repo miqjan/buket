@@ -115,7 +115,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getProducts: (categoyId, limit) =>  dispatch ( getProducts(categoyId, limit) ),
-        addItem : (id) => dispatch(addItem(id)),
+        addItem : (id,imgUrl,price) => dispatch(addItem(id,imgUrl,price)),
         removeItem: (id) => dispatch(removeItem(id)),
     };
 };

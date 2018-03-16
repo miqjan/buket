@@ -1,3 +1,4 @@
+import Alert from 'react-s-alert';
 import { SET_PRODUCT, REMOVE_PRODUCT } from '../constants/CardConstants';
 import config from '../../config/index.json';
 
@@ -13,8 +14,27 @@ function RemoveProductFromCard(array) {
         payload: array,
     };
 }
-
-export function removeItem (store, id){
+export function incrementCount (id){
+    return async( dispatch, getState ) => {
+        const { card: { products: store }} = getState();
+        const index = store.findIndex(x => x.id === id);
+        if((index > -1) && (store[index].count < 5)){
+            store[index].count++;
+            dispatch(SetProductToCard(store));
+        }
+    };
+}
+export function decrementCount (id){
+    return async( dispatch, getState ) => {
+        const { card: { products: store }} = getState();
+        const index = store.findIndex(x => x.id === id);
+        if((index > -1) && (store[index].count > 1)){
+            store[index].count--;
+            dispatch(SetProductToCard(store));
+        }
+    };
+}
+export function removeItem (id){
     return async( dispatch, getState ) => {
         const { card: { products: store }} = getState();
         const index = store.findIndex(x => x.id === id);
@@ -24,16 +44,24 @@ export function removeItem (store, id){
         dispatch(RemoveProductFromCard(store));
     };
 }
-export function addItem (id) {
+export function addItem (id, imgUrl, price) {
     return async( dispatch, getState ) => {
         const { card: { products: store }} = getState();
         const index = store.findIndex(x => x.id === id);
         if(index > -1){
-            store[index].count++;
-            dispatch(SetProductToCard(store));
+            if(store[index].count < 5)
+            {   
+                store[index].count++;
+                dispatch(SetProductToCard(store));
+                Alert.success("Product added successfuly");
+            } else {
+                Alert.warning("The product count cant be more then 5");
+            }
         } else {
-            store.push({ id, count: 1 });
+            console.log()
+            store.push({ id, count: 1, imgUrl: imgUrl, price: price});
             dispatch(SetProductToCard(store));
+            Alert.success("Product added successfuly");
         }
     };
 }
