@@ -162,7 +162,7 @@ class Settings extends Component {
                     </div>
                 </div>
                 <Modal modalClass={this.state.modalActive} parentSetState={this.closeModal} />
-            </div >
+            </div>
         );
     }
 }
