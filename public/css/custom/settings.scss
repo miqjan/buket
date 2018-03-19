@@ -1,0 +1,272 @@
+.settings {
+    flex: 0 0 78.47%;
+    padding: 0 15px;
+    .settings-title {
+        h3 {
+            font-size: 30px;
+            color: #7ca212;
+            letter-spacing: 0.03em;
+            span {
+                padding-left: 5px;
+                font-weight: normal;
+                color: #333333;
+            }
+        }
+    }
+    .settings-sub-title {
+        padding: 25px 0;
+        text-align: center;
+        h4 {
+            font-size: 25px;
+            color: #333333;
+            font-weight: normal;
+        }
+    }
+    .account-settings {
+        .account-settings-data {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            .change-password {
+                flex: 0 0 100%;
+                padding: 5px 0;
+                display: flex;
+                align-items: center;
+                .open-btn {
+                    background-color: #f94d8e;
+                    padding: 10px 0;
+                    min-width: 200px;
+                    text-align: center;
+                    height: 39px;
+                    transition: all 0.5s;
+                    overflow: hidden;
+                    margin-left: 15px;
+                    cursor: pointer;
+                    span {
+                        font-size: 18px;
+                        color: #ffffff;
+                        border: none;
+                        font-weight: bold;
+                        white-space: nowrap;
+                    }
+                    &.closed {
+                        min-width: 30px;
+                        margin: 0;
+                    }
+                }
+                .pass-wrap {
+                    flex: 0 0 0%;
+                    overflow: hidden;
+                    display: flex;
+                    transition: all .5s;
+                    label {
+                        white-space: nowrap;
+                    }
+                    .pass {
+                        flex: 0 0 52.5%;
+                    }
+                    .con-pass {
+                        flex: 0 0 47.5%;
+                        input {
+                            width: 47.3%;
+                        }
+                    }
+                    &.active {
+                        flex: 0 0 95%;
+                    }
+                }
+            }
+            .form-group {
+                padding: 5px 15px;
+                flex: 0 0 50%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                label {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                input {
+                    border: 1px solid #D5D5D5;
+                    font-size: 18px;
+                    padding: 8px;
+                }
+                &.br {
+                    flex: 0 0 100%;
+                    input {
+                        flex: 0 0 77.4%;
+                    }
+                }
+                &.error{
+                    input{
+                        border-color: red; 
+                    }
+                }
+            }
+            hr {
+                flex: 0 0 100%;
+                height: 1px;
+                background-color: #e23174;
+                margin: 15px 0;
+            }
+        }
+    }
+    .delivery-book {
+        .delivery-table {
+            table {
+                width: 100%;
+                tr {
+                    border-top: 1px solid #e33274;
+                    transition: all .5s;
+                    th {
+                        white-space: nowrap;
+                    }
+                    th,
+                    td {
+                        padding: 20px 15px;
+                        ul {
+                            display: flex;
+                            li {
+                                display: inline-block;
+                                margin: 0 5px;
+                                cursor: pointer;
+                                position: relative;
+                                img {
+                                    width: 30px;
+                                }
+                                &:last-child {
+                                    img {
+                                        width: 22px;
+                                        vertical-align: super;
+                                    }
+                                }
+                                span {
+                                    visibility: hidden;
+                                    background-color: black;
+                                    color: #fff;
+                                    text-align: center;
+                                    border-radius: 6px;
+                                    padding: 8px;
+                                    position: absolute;
+                                    z-index: 1;
+                                    bottom: 100%;
+                                    left: 105%;
+                                }
+                                &:hover span {
+                                    visibility: visible;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .delivery-book-add {
+        hr {
+            flex: 0 0 100%;
+            height: 1px;
+            background-color: #e23174;
+            margin: 15px 0;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            label {
+                flex: 0 0 25%;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            input,
+            textarea,
+            select {
+                border: 1px solid #D5D5D5;
+                font-size: 18px;
+                padding: 8px;
+                flex: 0 0 70%;
+            }
+            select {
+                flex: 0 0 45%;
+            }
+            span {
+                flex: 0 0 20%;
+                text-align: right;
+                display: inline-block;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+        .add-btn {
+            text-align: right;
+            padding: 5px 0 5px 0;
+            button {
+                font-size: 20px;
+                padding: 0 50px;
+                height: 39px;
+                color: #ffffff;
+                background-color: #aad441;
+                border: none;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.modal {
+    .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        label {
+            flex: 0 0 25%;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        input,
+        textarea,
+        select {
+            border: 1px solid #D5D5D5;
+            font-size: 18px;
+            padding: 8px;
+            flex: 0 0 70%;
+        }
+        select {
+            flex: 0 0 45%;
+        }
+        span {
+            flex: 0 0 20%;
+            text-align: right;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+    .modal-btns {
+        padding-top: 20px;
+        ul {
+            text-align: right;
+            li {
+                display: inline-block;
+                margin-left: 10px;
+                padding: 0;
+                &:first-child {
+                    button {
+                        background-color: #D5D5D5;
+                        font-size: 20px;
+                        padding: 0 20px;
+                        height: 39px;
+                        color: #ffffff;
+                        border: none;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
