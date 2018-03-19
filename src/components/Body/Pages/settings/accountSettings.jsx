@@ -65,7 +65,19 @@ class AccountSettings extends Component {
     updateProfile(){
         const error = this.checkValidation(this.state);
         if(error.success){
-            
+            const {
+                current_password,
+                password,
+                cnfirm_password,
+                firstname,
+                lastname,
+                phone,
+            } = this.state;
+            const data = {current_password, password, cnfirm_password,
+                firstname, lastname, phone, };
+            Object.keys(data).forEach((key) => (data[key] === '' || data[key] === undefined || data[key] === null) && delete data[key]);
+            this.props.UpdateProfile(data);
+            this.setState({current_password: ''});
         } else {
             this.setState({error});
         }
@@ -161,7 +173,8 @@ class AccountSettings extends Component {
 }
 
 AccountSettings.propTypes = {
-    user: PropTypes.object
+    user: PropTypes.object,
+    UpdateProfile: PropTypes.func,
 };
 
 

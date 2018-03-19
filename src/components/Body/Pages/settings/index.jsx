@@ -6,8 +6,7 @@ import config from '../../../../../config';
 import { Icon } from 'react-fa';
 import Modal from '../../../Layout/Modal/index.jsx';
 import AccountSettings from './accountSettings.jsx';
-
-
+import { UpdateProfile } from '../../../../actions/Settings';
 
 class Settings extends Component {
     constructor(props) {
@@ -73,7 +72,7 @@ class Settings extends Component {
                 <div className="settings-title">
                     <h3>Settings: <span>{this.props.user.firstname + ' ' + this.props.user.lastname }</span></h3>
                 </div>
-                <AccountSettings user={this.props.user}/>
+                <AccountSettings user={this.props.user} UpdateProfile={this.props.UpdateProfile}/>
                 <div className="delivery-book">
                     <div className="settings-sub-title">
                         <h4>Delivery book</h4>
@@ -177,7 +176,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        UpdateProfile: (object) => dispatch(UpdateProfile(object)),
     };
 };
 

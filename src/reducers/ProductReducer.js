@@ -1,4 +1,4 @@
-import { GET_PRODUCTS_SUCCESS, GET_PRODUCTS_ERORR, GET_CATEGORY_LOADING } from '../constants/ProductConstants';
+import { GET_PRODUCTS_SUCCESS, GET_PRODUCTS_ERORR, GET_PRODUCTS_LOADING } from '../constants/ProductConstants';
 const initStore = {
     
     data : [],
@@ -9,7 +9,7 @@ const initStore = {
 }
 const ProductReducer = (store = initStore, action) => {
     switch (action.type) {
-        case GET_CATEGORY_LOADING:
+        case GET_PRODUCTS_LOADING:
             return Object.assign({},store,{loading:action.payload});
         case GET_PRODUCTS_SUCCESS:
             return Object.assign({},store,{data:action.payload.data.products, error: null, notMore:action.payload.data.notMore });
