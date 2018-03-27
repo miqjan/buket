@@ -1,8 +1,7 @@
 import axios from 'axios';
-
-
 import {GET_CATEGORY_SUCCESS,GET_CATEGORY_ERORR,GET_CATEGORY_LOADING} from '../constants/CategoryConstants';
 import config from '../../config/index.json';
+
 function GetCategoryError(error) {
     return {
         type: GET_CATEGORY_ERORR,

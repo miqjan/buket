@@ -41,22 +41,24 @@ class Item extends Component {
     }
 
     addToCard(e) {
-        this.props.card.add(e.target.dataset.id, e.target.dataset.imgurl, e.target.dataset.price);
+        this.props.card.add(e.target.dataset.id, e.target.dataset.imgurl, e.target.dataset.price, e.target.dataset.name);
     }
 
     render() {
         return (
             <div className="product-item">
                 <Link to={"/products/"+this.props.product._id} >
-                <img src={config.static_server_url+this.props.product.image_url} alt=""/>
+                    <img src={config.static_server_url+this.props.product.image_url} alt=""/>
                 </Link>
                 <div className="product-hover">
                     <div className="hover-content">
                     <div className="product-price">
+                            <h5>{this.props.product.name[this.props.language]}</h5>
                             <h5>${this.props.product.price}</h5>
                     </div>
                         <div className="product-trash">
                             <a href="javascript:" data-id={this.props.product._id}
+                            data-name={JSON.stringify(this.props.product.name)}
                             data-imgurl={this.props.product.image_url}
                             data-price={this.props.product.price}
                             onClick={this.addToCard} >{this.props.translate.application.product.add_card}</a>
@@ -71,6 +73,7 @@ Item.propTypes = {
     product : PropTypes.object.isRequired,
     translate: PropTypes.object.isRequired,
     card: PropTypes.object, 
+    language: PropTypes.string,
 }
 
 export default Item;

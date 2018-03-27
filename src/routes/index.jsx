@@ -11,8 +11,9 @@ import RouteGrup from './RouteGrup/index.jsx';
 import {IsSignIn} from '../actions/Auth';
 
 import ProductList from '../components/Body/Product/table.jsx';
-import ShopCart from '../components/Body/Pages/ShopCart.jsx';
+import ShopCart from '../components/Body/Pages/shopCart/ShopCart.jsx';
 import Settings from '../components/Body/Pages/settings/index.jsx';
+import Shipping from '../components/Body/Pages/shopCart/shipping.jsx';
 
 
 class Root extends Component {
@@ -55,6 +56,7 @@ class Root extends Component {
                     <RouteGrup>
                         <Switch>
                             <Route path="/private/settings" component={Settings} />
+                            <Route path="/private/shipping" component={Shipping} />                            
                             <Route path="/private/delivery_book" render={()=>(<div>delivery_book</div>)} />
                             <Route path="/private/*" render={()=>(<div>not found</div>)}/>
                         </Switch>
@@ -97,7 +99,7 @@ class Root extends Component {
                                 
                             </Switch>
                         </RouteGrup>
-                        {/* <Redirect to={{ pathname: '/categories/flowers',}}/> */}
+                        <Redirect to={{ pathname: '/categories/flowers',}}/> 
                     </Switch>
                     
                 </PublicRoute>

@@ -1,0 +1,15 @@
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .cart-check table,
+    .cart-check table * {
+        visibility: visible;
+    }
+    .cart-check table {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
