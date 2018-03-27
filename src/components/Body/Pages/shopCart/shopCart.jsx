@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash'
 import { connect } from 'react-redux';
 //import { getProductsByIdsArray } from '../../../actions/Product';
-import { removeItem, incrementCount, decrementCount } from '../../../actions/Card';
-import config from '../../../../config';
+import { removeItem, incrementCount, decrementCount } from '../../../../actions/Card';
+import config from '../../../../../config';
+import Check from './check.jsx';
+
 
 class ShopCart extends Component {
     constructor(props) {
@@ -75,20 +77,18 @@ class ShopCart extends Component {
                             </li>
                         </ul>
                     </div>
-                ):(
-                    <div className="step">
-                        <ul>
-                            <li className="active">
-                                signIn
+                ) : (
+                        <div className="step">
+                            <ul>
+                                <li className="active">
+                                    signIn
                             </li>
-                            <li >
-                                signUP
+                                <li >
+                                    signUP
                             </li>
-                        </ul>
-                    </div>
-                )
-                }
-
+                            </ul>
+                        </div>
+                    )}
                 <div className="cart-content">
                     <div className="cart-table">
                         <table>
@@ -108,7 +108,7 @@ class ShopCart extends Component {
                                             <tr key={index}>
                                                 <td><img src={config.static_server_url + product.imgUrl} alt="item" /></td>
                                                 <td>
-                                                    caxik
+                                                    {product.name[this.props.language]}
                                                     <span className="remove" data-id={product.id} onClick={this.removeItem} >Remove</span>
                                                 </td>
                                                 <td>${product.price}</td>
@@ -127,16 +127,16 @@ class ShopCart extends Component {
 
                             </tbody>
                         </table>
+                        {this.props.isSignIn ? (
+                            <div className="next-btn">
+                                <Link to="/private/shipping" >Next</Link>
+                            </div>
+                        ) : (
+                                ''
+                            )
+                        }
                     </div>
-                    <div className="cart-check">
-                        <ul style={{padding :'50px'}} >
-                            <li>Total</li>
-                            <li>${this.state.products.reduce((sum,current)=>{
-                                return sum + (current.price * current.count);
-                            },0)}</li>
-                        </ul>
-                    </div>
-
+                    <Check products={this.state.products} language={this.props.language} />
                 </div>
             </div>
         );
@@ -154,6 +154,7 @@ const mapStateToProps = (state) => {
     return {
         isSignIn: state.user.isSignIn,
         card: state.card,
+        language: state.language.location,
     };
 };
 const mapDispatchToProps = (dispatch) => {

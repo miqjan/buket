@@ -8,14 +8,20 @@ const srcPath = path.join(__dirname, 'src');
 const outputPath = path.resolve(__dirname, 'public');
 
 const config = {
-    entry: [
-        path.join(srcPath, 'index.jsx'),
-    ],
+    entry: {
+        app: path.join(srcPath, 'index.jsx'),
+        vender: ['react',
+            'react-dom',
+            'react-router-dom',
+            'react-redux',
+            'react-s-alert'
+        ]
+    },
 
     output: {
         path: outputPath,
         publicPath: publicPath,
-        filename: 'bundle-[hash].js',
+        filename: '[name].bundle-[hash].js',
     },
     module:modules,
     plugins: [
@@ -29,7 +35,7 @@ const config = {
     ],
     devServer: {
         port: 3000,
-        host: '0.0.0.0',
+        host: 'localhost',
         disableHostCheck: true,
         historyApiFallback: true,
     },

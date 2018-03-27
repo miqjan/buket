@@ -37,6 +37,14 @@
     padding: 20px;
     border: 1px solid #888;
     width: 600px;
+    .form-group{
+        &.error{
+            input{
+                border-color: red;
+            }
+        }
+    }
+    
 }
 .save-btn {
     padding: 5px 15px;

@@ -93,13 +93,13 @@ class AccountSettings extends Component {
         } else {
             error.password = false;
         }
-        if(firstname.length < 2){
+        if(firstname && firstname.length < 2){
             error.firstname = true;
             error.success = false;
         } else {
             error.firstname = false;
         }
-        if(lastname.length < 2){
+        if(lastname && lastname.length < 2){
             error.lastname = true;
             error.success = false;
         } else {

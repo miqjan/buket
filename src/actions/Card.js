@@ -44,7 +44,7 @@ export function removeItem (id){
         dispatch(RemoveProductFromCard(store));
     };
 }
-export function addItem (id, imgUrl, price) {
+export function addItem (id, imgUrl, price, name) {
     return async( dispatch, getState ) => {
         const { card: { products: store }} = getState();
         const index = store.findIndex(x => x.id === id);
@@ -59,7 +59,7 @@ export function addItem (id, imgUrl, price) {
             }
         } else {
             console.log()
-            store.push({ id, count: 1, imgUrl: imgUrl, price: price});
+            store.push({ id, count: 1, imgUrl: imgUrl, price: price , name: JSON.parse(name)});
             dispatch(SetProductToCard(store));
             Alert.success("Product added successfuly");
         }

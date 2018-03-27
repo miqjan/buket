@@ -77,7 +77,7 @@ class Table extends Component {
                     <div className="product-table">
                         {
                             this.props.data.map(( product, index )=>{
-                                return (<Item key={index} product={product} translate={this.translate} card={{
+                                return (<Item key={index} product={product} language={this.props.language} translate={this.translate} card={{
                                     add: this.props.addItem,
                                     remove: this.props.removeItem,
                                 }}/>)
@@ -115,7 +115,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getProducts: (categoyId, limit) =>  dispatch ( getProducts(categoyId, limit) ),
-        addItem : (id,imgUrl,price) => dispatch(addItem(id,imgUrl,price)),
+        addItem : (id,imgUrl,price,name) => dispatch(addItem(id,imgUrl,price,name)),
         removeItem: (id) => dispatch(removeItem(id)),
     };
 };
