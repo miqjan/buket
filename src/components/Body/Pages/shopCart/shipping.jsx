@@ -14,9 +14,12 @@ class Shipping extends Component {
         super(props);
         this.state = {
             error: {},
+            delivery_book_select: "default",
+            region: "default",
         };
         this.handleChange = this.handleChange.bind(this);
         this.checkValidation = this.checkValidation.bind(this);
+        this.next = this.next.bind(this);
     }
 
     componentWillMount() {
@@ -52,9 +55,32 @@ class Shipping extends Component {
 
     }
     handleChange(e) {
-        this.setState({[e.target.name]: e.target.value,
-            error: this.checkValidation(Object.assign(this.state,{[e.target.name]: e.target.value}))});
+        if(e.target.name === 'delivery_book_select'){
+            const selectedDeliveryBook = Object.assign({},this.props.delivery_book.find(obj => obj._id === e.target.value));
+            error = this.checkValidation(selectedDeliveryBook);
+            error.region = false;
+            this.setState({[e.target.name]: e.target.value, ...selectedDeliveryBook,error});
+
+        } else {
+            var {[e.target.name]: error} = this.checkValidation(Object.assign(this.state,{[e.target.name]: e.target.value}))
+            this.setState({[e.target.name]: e.target.value,
+                error:Object.assign(this.state.error, {[e.target.name]: error})});
+        }
+        
     };
+    next(){
+        const temp = JSON.parse(JSON.stringify(this.state));
+        if(_.isArray(this.state.region)){
+            temp.region = temp.region[0]._id
+        }
+        const error = this.checkValidation(temp);
+        if(error.success){
+            this.props.history.push('/private/billing');
+        } else {
+            this.setState({error});
+        }
+    
+    }
     checkValidation(state){
         const {firstname, lastname, phone, country,
             region, city_village, address} = state;
@@ -79,7 +105,7 @@ class Shipping extends Component {
         } else {
             error.phone = false;
         }
-        if(!region || region.length < 2){
+        if(!region || region === 'default' || region.length < 2){
             error.region = true;
             error.success = false;
         } else {
@@ -128,13 +154,14 @@ class Shipping extends Component {
                 </div>
                 <div className="shipping-content">
                     <div className="select-delivery">
-                        <select name="" id="">
-                            <option value="" selected disabled>Select delivery location</option>
+                        <select name="delivery_book_select" onChange={this.handleChange} value={this.state.delivery_book_select} >
+                            <option value='default' disabled={true} >select book</option>
                             {
                                 this.props.delivery_book && this.props.delivery_book.map((item, index) => {
+                                    
                                     return (
-                                        <option value={item.id} key={index}>
-                                            {`${item.firstname}, ${item.lastname}, ${item.address}`}
+                                        <option value={item._id} key={index}>
+                                            {`${item.firstname}, ${item.lastname}, ${item.city_village}, ${item.address},       ${item.region[0].name[this.props.language]} - $${item.region[0].price}`}
                                         </option>
                                     )
                                 })
@@ -157,8 +184,8 @@ class Shipping extends Component {
                             </div>
                             <div className={`form-group ${Rregion ? "error" : ""}`}>
                                 <label htmlFor="add-region">Region</label>
-                                <select id="add-region" value={region} name="region" onChange={this.handleChange} ref={(select) => this.selected = select}>
-                                    <option value="" disabled selected>Select Region</option>
+                                <select id="add-region" value={ _.isArray(region)? region[0]._id: region } name="region" onChange={this.handleChange} >
+                                    <option value="default" disabled >Select Region</option>
                                     {this.props.regions.map((item, index) => {
                                         return (
                                             <option value={item._id} key={index} >{item.name[this.props.language]}</option>
@@ -166,7 +193,7 @@ class Shipping extends Component {
                                     })}
 
                                 </select>
-                                <span>${region ? (this.props.regions.find(obj => obj._id === region)).price : '0'} </span>
+                                <span>${(region !== 'default' )? (  _.isArray(region)?  region[0].price : (this.props.regions.find(obj => obj._id === region)).price) : ("0") } </span>
                             </div>
                             <div className={`form-group ${Rcity_village ? "error" : ""}`}>
                                 <label htmlFor="add-city">City</label>
@@ -179,10 +206,12 @@ class Shipping extends Component {
                         </div>
                     </div>
                     <div className="next-btn">
-                        <Link to="/private/billing" >Next</Link>
+                        <button onClick={this.next} >next</button>
                     </div>
                 </div>
-                <Check products={this.props.card.products} language={this.props.language} />
+                <Check products={this.props.card.products} shipping={
+                    (region !== 'default' )? (  _.isArray(region)?  region[0] : this.props.regions.find(obj => obj._id === region) ) : null
+                } language={this.props.language} />
             </div>
         );
     }

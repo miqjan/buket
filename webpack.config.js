@@ -8,6 +8,7 @@ const srcPath = path.join(__dirname, 'src');
 const outputPath = path.resolve(__dirname, 'public');
 
 const config = {
+    devtool: 'source-map',
     entry: {
         app: path.join(srcPath, 'index.jsx'),
         vender: ['react',

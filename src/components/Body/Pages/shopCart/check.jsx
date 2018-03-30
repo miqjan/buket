@@ -44,8 +44,7 @@ class Check extends Component {
             language,
             shipping,
         } = this.props;
-        let sum = 0;
-
+        let sum = shipping? shipping.price :  0;
         return (
             <div className="cart-check">
                 <table>
@@ -57,23 +56,25 @@ class Check extends Component {
                                     <tr key={index}>
                                         <td>{item.name[language]}</td>
                                         <td>x{item.count}</td>
-                                        <td>{item.price}</td>
-                                        <td>{item.count * item.price}</td>
+                                        <td>${item.price}</td>
+                                        <td>${item.count * item.price}</td>
                                     </tr>
                                 );
                             })
+                            
                         }
                         {
+                            
                             shipping && (
                                 <tr>
-                                    <td colSpan={3}>Address</td>
-                                    <td>$667778</td>
+                                    <td colSpan={3}>{shipping.name[language]}</td>
+                                    <td>${shipping.price}</td>
                                 </tr>
                             )
                         }
                         <tr>
                             <td colSpan={3} >Total</td>
-                            <td>{sum}</td>
+                            <td>${sum}</td>
                         </tr>
                     </tbody>
                 </table>
