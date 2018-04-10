@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-import { GET_REGIONS_SUCCESS, GET_REGIONS_ERORR, GET_REGIONS_LOADING } from '../constants/ShippingConstants';
+import { GET_REGIONS_SUCCESS, GET_REGIONS_ERORR, GET_REGIONS_LOADING, SET_SELECTED } from '../constants/ShippingConstants';
 import config from '../../config/index.json';
 
 function GetRegionsError(error) {
@@ -45,3 +45,9 @@ export function getRegions() {
         }
     };
 };
+export function setSelected(object){
+    return {
+        payload: object,
+        type: SET_SELECTED,
+    }
+}

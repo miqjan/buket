@@ -91,7 +91,7 @@ class HeadContent extends Component {
                     <ul>
                         <li>
                             <div className="header-logo">
-                                <img src="../../../../../public/img/header-logo.png" alt=""/>
+                                <img src="../../../../../public/img/header-logo.png" alt="Buket"/>
                             </div>
                         </li>
                         <li>

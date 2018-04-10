@@ -362,9 +362,15 @@ header {
                             padding: 6px 0;
                             cursor: pointer;
                             outline: none;
+                            text-transform: uppercase;
                         }
                         span{
                             margin-right: 5px;
+                        }
+                        img{
+                            width: 26px;
+                            height: 25px;
+                            vertical-align: text-bottom;
                         }
                         &.sign-in,&.sign-out{
                             button{

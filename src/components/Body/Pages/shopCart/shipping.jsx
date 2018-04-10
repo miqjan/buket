@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import Check from './check.jsx';
 import * as _ from 'lodash';
 import { getDeliveryBook } from '../../../../actions/Settings';
-import { getRegions } from '../../../../actions/Shipping';
-
-
+import { getRegions, setSelected } from '../../../../actions/Shipping';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment-timezone';
 
 class Shipping extends Component {
     constructor(props) {
@@ -16,19 +17,25 @@ class Shipping extends Component {
             error: {},
             delivery_book_select: "default",
             region: "default",
+            startDate: moment().add(1,'day').tz('Asia/Yerevan').startOf('day'),
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeDate = this.handleChangeDate.bind(this);
         this.checkValidation = this.checkValidation.bind(this);
         this.next = this.next.bind(this);
     }
 
     componentWillMount() {
+        if(this.props.selected){
+            this.setState(this.props.selected);
+        }
         if (!this.props.delivery_book) {
             this.props.getDeliveryBook();
         }
         if(_.isEmpty(this.props.regions)){
             this.props.getRegions();            
         }
+
     }
 
     componentDidMount() {
@@ -52,11 +59,16 @@ class Shipping extends Component {
     }
 
     componentWillUnmount() {
-
+        
+    }
+    handleChangeDate(date) {
+        this.setState({
+          startDate: date
+        });
     }
     handleChange(e) {
         if(e.target.name === 'delivery_book_select'){
-            const selectedDeliveryBook = Object.assign({},this.props.delivery_book.find(obj => obj._id === e.target.value));
+            const {_id, ...selectedDeliveryBook} = Object.assign({},this.props.delivery_book.find(obj => obj._id === e.target.value));
             error = this.checkValidation(selectedDeliveryBook);
             error.region = false;
             this.setState({[e.target.name]: e.target.value, ...selectedDeliveryBook,error});
@@ -75,6 +87,9 @@ class Shipping extends Component {
         }
         const error = this.checkValidation(temp);
         if(error.success){
+            const {error, ...toSave} = temp;
+            toSave.startDate = this.state.startDate;// when comeback to this page  startDate.format error
+            this.props.setSelected(toSave);
             this.props.history.push('/private/billing');
         } else {
             this.setState({error});
@@ -131,7 +146,7 @@ class Shipping extends Component {
             region, city_village, address} = this.state;
         const {firstname: Rfirstname, lastname: Rlastname, phone: Rphone, country: Rcountry,
             region: Rregion, city_village: Rcity_village, address: Raddress} = this.state.error;
-
+        const momentObj = moment();
         return (
             <div className="shipping">
                 <div className="step">
@@ -205,10 +220,33 @@ class Shipping extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="datetime-wrapp">
+                        <div className="datetime-item">
+                            <DatePicker
+                                inline
+                                utcOffset={4}
+                                showTimeSelect
+                                onChange={this.handleChangeDate}
+                                selected={this.state.startDate}
+                                timeIntervals={60}
+                                minDate={moment().add(1,'day').tz('Asia/Yerevan')}
+                                excludeTimes={[moment().hours(1).minutes(0), moment().hours(2).minutes(0), moment().hours(3).minutes(0), moment().hours(4).minutes(0), moment().hours(5).minutes(0), moment().hours(6).minutes(0), moment().hours(7).minutes(0)]}
+                            />
+                        </div>
+                        <div className="datetime-info">
+                            <div className="datatime-info-content">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                            </div>
+                            <div className='datatime-input' >
+                                <input type="text" readOnly value={this.state.startDate.format('YYYY-MM-DD HH:mm')} />
+                            </div>
+                        </div>
+                    </div>
                     <div className="next-btn">
                         <button onClick={this.next} >next</button>
                     </div>
                 </div>
+                
                 <Check products={this.props.card.products} shipping={
                     (region !== 'default' )? (  _.isArray(region)?  region[0] : this.props.regions.find(obj => obj._id === region) ) : null
                 } language={this.props.language} />
@@ -221,20 +259,23 @@ Shipping.propTypes = {
     language: PropTypes.string,
     card: PropTypes.object,
     delivery_book: PropTypes.array,
-    getRegions : PropTypes.func,    
+    getRegions: PropTypes.func,
+    setSelected: PropTypes.func,   
 };
 const mapStateToProps = (state) => {
     return {
         language: state.language.location,
         card: state.card,
         delivery_book: state.user.delivery_book,
-        regions: state.shipping.regions,        
+        regions: state.shipping.regions,
+        selected: state.shipping.select,
     };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
         getDeliveryBook: () => dispatch(getDeliveryBook()),
-        getRegions: () => dispatch(getRegions()),        
+        getRegions: () => dispatch(getRegions()),
+        setSelected: (obj) => dispatch(setSelected(obj)),
     };
 };
 

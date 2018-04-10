@@ -6,6 +6,7 @@ import ProductReducer from './ProductReducer';
 import LanguageReducer from './LanguageReducer';
 import CardReducer from './CardReducer';
 import ShippingReducer from './ShippingReducer';
+import BillingReducer from './BillingReducer';
 
 export default combineReducers({
     router: routerReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
     language: LanguageReducer,
     card: CardReducer,
     shipping: ShippingReducer,
+    billing: BillingReducer,
 });

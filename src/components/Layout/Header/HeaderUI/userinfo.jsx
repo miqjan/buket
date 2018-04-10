@@ -63,6 +63,9 @@ class UserInfo extends Component {
                                 <li className="settings">
                                     <Link to={'/private/settings'}><button type="button"><Icon name="cogs" />{this.props.translate.application.header.setting}</button></Link>
                                 </li>
+                                <li>
+                                    <Link to={'/private/orders'}><button type="button"><img src="/public/fonts/choice.svg" alt="orders" /> Orders</button></Link>
+                                </li>
                                 <li className="sign-out">
                                     <button onClick={this.SignOut.bind(this)} type="button"><Icon name="sign-out"  />{this.props.translate.application.header.auth.sign_out}</button>
                                 </li>

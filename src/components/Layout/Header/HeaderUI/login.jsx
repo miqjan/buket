@@ -72,7 +72,7 @@ class Login extends Component {
                 
                 <div className="login">
                     <ul>
-                        <li><Link to={'#'}>{this.props.translate.application.header.auth.sign_up}</Link></li>
+                        <li><Link to={'/pages/sign-up'}>{this.props.translate.application.header.auth.sign_up}</Link></li>
                         <li className="drop-btn">
                             <a href="javascript:" className={this.state.active? "active": ""} onClick={this.OpenDropSignIn.bind(this)} >{this.props.translate.application.header.auth.sign_in}</a>
                             <div className={`drop-sign-in ${this.state.active? "active": ""}`}>

@@ -1,0 +1,33 @@
+.sign-up{
+    flex: 0 0 78.47%;
+    padding: 0 15px;
+    .form-block{
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        .form-group{
+            padding: 10px 0;
+            input{
+                width: 100%;
+                padding: 8px;
+                border-radius: 20px;
+                font-size: 18px;
+                border: 1px solid #d5d5d5;
+            }
+        }
+        .form-brn{
+            padding-top: 10px;
+            button{
+                cursor: pointer;
+                width: 100%;
+                border-radius: 20px;
+                border: none;
+                background-color: #aad342;
+                font-size: 18px;
+                color: #ffffff;
+                font-weight: bold;
+                padding: 10px 0;
+            }
+        }
+    }
+}

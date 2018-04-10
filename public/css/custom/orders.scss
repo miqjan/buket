@@ -1,0 +1,60 @@
+.orders{
+    flex: 0 0 78.47%;
+    padding: 0 15px;
+    .orders-title{
+        padding: 25px 0;
+        h2{
+            font-size: 25px;
+            text-transform: uppercase;
+        }
+    }
+    .orders-table {
+        table {
+            width: 100%;
+            tr {
+                border-top: 1px solid #e33274;
+                transition: all .5s;
+                th {
+                    white-space: nowrap;
+                }
+                th,
+                td {
+                    padding: 20px 15px;
+                    ul {
+                        display: flex;
+                        li {
+                            display: inline-block;
+                            margin: 0 5px;
+                            cursor: pointer;
+                            position: relative;
+                            img {
+                                width: 30px;
+                            }
+                            &:last-child {
+                                img {
+                                    width: 22px;
+                                    vertical-align: super;
+                                }
+                            }
+                            span {
+                                visibility: hidden;
+                                background-color: black;
+                                color: #fff;
+                                text-align: center;
+                                border-radius: 6px;
+                                padding: 8px;
+                                position: absolute;
+                                z-index: 1;
+                                bottom: 100%;
+                                left: 105%;
+                            }
+                            &:hover span {
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
